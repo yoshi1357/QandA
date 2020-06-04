@@ -7,7 +7,46 @@
     <div>
       Name: <%= @question.name %>
     </div>
+
     <hr>
+
+    <div>
+      <h3>Answer</h3>
+      <table class="table table-striped">
+        <% if @question.answers.any? %>
+            <thead class="thead-light">
+              <tr>
+                <td>Answer</td>
+                <td>Name</td>
+                <td>Menu</td>
+              </tr>
+            </thead>
+            <tbody>
+            <% @question.answers.each do |answer| %>
+              <tr>
+                <td>
+                  <%= answer.content  %>
+                </td>
+                <td>
+                  <div>
+                    <%= answer.name  %>
+                  </div>
+                </td>
+                <td>
+                  [<%= link_to 'edit',edit_question_answer_path(@question,answer) %>][Delete]
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+        <% else %>
+          <p>No Answer yet</p>
+        <% end %>
+      </table>
+    </div>
+
+
+    <hr>
+
     <h3>Post new answers</h3>
     <%= form_with model: [@question,@answer],local: true do |f|  %>
       <%= f.hidden_field :question_id, {value: @question.id} %>
@@ -26,7 +65,10 @@
         <%= f.submit "Post", class: "btn btn-primary" %>
       </div>
     <% end %>
-  <div>
-    <%= link_to '>Home', root_path %>
+
+    <div>
+      <%= link_to '>Home', root_path %>
+    </div>
+
   </div>
 </div>
