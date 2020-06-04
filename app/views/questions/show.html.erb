@@ -33,7 +33,7 @@
                   </div>
                 </td>
                 <td>
-                  [<%= link_to 'edit',edit_question_answer_path(@question,answer) %>][Delete]
+                  [<%= link_to 'Edit',edit_question_answer_path(@question,answer) %>][<%= link_to 'Delete', question_answer_path(@question,answer), method: :delete %>]
                 </td>
               </tr>
             <% end %>

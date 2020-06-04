@@ -30,10 +30,10 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
      if @question.update(question_params)
       redirect_to root_path,notice: "Success!"
-    else
+     else
       flash[:alert] = "Save error!"
       render :edit
-    end
+     end
   end
 
   def destroy
