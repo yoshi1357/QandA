@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <header class="py-4">
+      <div class="container text-center">
+        <%= link_to root_path, target: "_blank" do %>
+          <%= image_tag 'QA_logo.jpg' %>
+        <% end %>
+      </div>
+
+      <ul class="navbar navbar-dark bg-dark justify-content-center">
+        <li class="nav-item"><%= link_to '投稿された質問一覧',root_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to '質問を投稿する！',new_question_path, class: "nav-link" %></li>
+      </ul>
+
+    </header>
+
     <div class="container">
       <% if flash[:notice] %>
         <p class="text-success"><%= flash[:notice] %></p>
