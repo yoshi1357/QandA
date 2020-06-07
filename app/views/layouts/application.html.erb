@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <!--ヘッダー-->
     <header class="py-4">
       <div class="container text-center">
         <%= link_to root_path, target: "_blank" do %>
@@ -23,6 +24,7 @@
       </ul>
 
     </header>
+    <!--ヘッダー-->
 
     <div class="container">
       <% if flash[:notice] %>
@@ -35,5 +37,21 @@
 
       <%= yield %>
     </div>
+
+    <!--フッダー-->
+    <footer class="py-4 bg-dark text-light">
+      <div class="container text-center">
+        <ul class="nav justify-content-center">
+          <li class=nav-item>
+            <%= link_to 'HOME',root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'New Question',new_question_path, class: "nav-link" %>
+          </li>
+        </ul>
+      <p><small>Copyright &copy;2020 Y.Yoshida, All Rights Reserved. </small></p>
+      </div>
+    </footer>
+    <!--フッダー-->
   </body>
 </html>
