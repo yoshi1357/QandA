@@ -6,26 +6,23 @@
   </ol>
 </div>
 
-<div class="row">
+<div id="show" class="row">
   <div class="col-md-12">
-    <h2><%= @question.title  %></h2>
-    <div>
-      Content: <%= @question.content  %>
-    </div>
-    <div>
-      Name: <%= @question.name %>
-    </div>
+    <dt><h4><%= @question.title %></h4></dt>
+    <dd class="content my-4"><%= @question.content %></dd>
+    <dd>投稿者名: <%= @question.name %></dd>
+    <dd>投稿日時: <%= @question.created_at %></dd>
 
     <hr>
 
     <div>
-      <h3>Answer</h3>
+      <h3>この質問への回答</h3>
       <table class="table table-striped">
         <% if @question.answers.any? %>
             <thead class="thead-light">
               <tr>
-                <td>Answer</td>
-                <td>Name</td>
+                <td>回答</td>
+                <td>回答者名</td>
                 <td>Menu</td>
               </tr>
             </thead>
@@ -47,7 +44,7 @@
             <% end %>
             </tbody>
         <% else %>
-          <p>No Answer yet</p>
+          <p>まだこの質問への回答はありません</p>
         <% end %>
       </table>
     </div>
@@ -55,7 +52,7 @@
 
     <hr>
 
-    <h3>Post new answers</h3>
+    <h3>この質問に回答する</h3>
     <%= form_with model: [@question,@answer],local: true do |f|  %>
       <%= f.hidden_field :question_id, {value: @question.id} %>
 
