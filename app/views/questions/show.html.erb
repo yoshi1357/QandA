@@ -51,25 +51,29 @@
 
 
     <hr>
+    <div class="text-center"><button class="answer-btn btn btn-danger my-4">この質問に回答する！</button></div>
 
-    <h3>この質問に回答する</h3>
-    <%= form_with model: [@question,@answer],local: true do |f|  %>
-      <%= f.hidden_field :question_id, {value: @question.id} %>
+    <div class="disable">
+      <h3>この質問に回答する</h3>
+      <%= form_with model: [@question,@answer],local: true do |f|  %>
+        <%= f.hidden_field :question_id, {value: @question.id} %>
 
-      <div class="form-group">
-        <label>Name</label>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
+        <div class="form-group">
+          <label>Name</label>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
 
-      <div class="form-group">
-        <label>Content</label>
-        <%= f.text_area :content, class: "form-control" %>
-      </div>
+        <div class="form-group">
+          <label>Content</label>
+          <%= f.text_area :content, class: "form-control" %>
+        </div>
 
-      <div class="text-center">
-        <%= f.submit "Post", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+        <div class="text-center">
+          <%= f.submit "Post", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+
 
     <div>
       <%= link_to '>Home', root_path %>
