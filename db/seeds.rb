@@ -5,7 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Faker::Config.locale = :ja
 
-Question.create(id: 1,name: 'Test Name1', title: 'Test Title1', content: 'Test Content1')
-Question.create(id: 2,name: 'Test Name2', title: 'Test Title2', content: 'Test Content2')
-Question.create(id: 3,name: 'Test Name3', title: 'Test Title3', content: 'Test Content3')
+# 100.times do |n|
+#   name = Faker::Name.name
+#   title = Faker::Lorem.sentence(word_count: 10)
+#   content = Faker::Lorem.sentence(word_count: 30)
+
+#   Question.create!(name: name,
+#                   title: title,
+#                   content: content,
+#   )
+
+# end
+
+100.times do |n|
+  question_id = Faker::Number.between(1,100)
+  name = Faker::Name.name
+  content = Faker::Lorem.sentence(word_count: 30)
+
+  Answer.create!(name: name,
+                 question_id: question_id,
+                 content: content,
+  )
+
+end
