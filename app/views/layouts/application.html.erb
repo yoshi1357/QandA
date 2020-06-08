@@ -26,7 +26,15 @@
     </header>
     <!--ヘッダー-->
 
+
+
     <div class="container">
+      <!--検索機能-->
+      <%= form_with url: root_path, method: :get, local: true do |f| %>
+        <%= f.text_field :word %>
+        <%= f.submit :search %>
+      <% end %>
+
       <% if flash[:notice] %>
         <p class="text-success"><%= flash[:notice] %></p>
       <% end %>
