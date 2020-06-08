@@ -1,8 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only:[:show, :edit, :update, :destroy]
 
+  PER = 10
+
   def index
-    @questions = Question.all.order(created_at: "DESC")
+    #Question.allの代わりにQuestion.page(params[:page]).per()が入る
+    @questions = Question.page(params[:page]).per(PER).order(created_at: "DESC")
   end
 
   def show
