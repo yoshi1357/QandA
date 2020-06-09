@@ -18,10 +18,26 @@
         <% end %>
       </div>
 
+      <!--ナビバー-->
       <ul class="navbar navbar-dark bg-dark justify-content-center">
         <li class="nav-item"><%= link_to '投稿された質問一覧',root_path, class: "nav-link" %></li>
         <li class="nav-item"><%= link_to '質問を投稿する！',new_question_path, class: "nav-link" %></li>
+        <li class="nav-item px-4">
+          <%= form_with url: root_path, method: :get, local: true do |f| %>
+            <%= f.text_field :word %>
+            <%= f.submit "質問を検索" %>
+          <% end %>
+
+          <% if flash[:notice] %>
+            <p class="text-success"><%= flash[:notice] %></p>
+          <% end %>
+
+          <% if flash[:alert] %>
+            <p class="text-danger"><%= flash[:alert] %></p>
+          <% end %>
+        </li>
       </ul>
+
 
     </header>
     <!--ヘッダー-->
@@ -30,18 +46,7 @@
 
     <div class="container">
       <!--検索機能-->
-      <%= form_with url: root_path, method: :get, local: true do |f| %>
-        <%= f.text_field :word %>
-        <%= f.submit :search %>
-      <% end %>
 
-      <% if flash[:notice] %>
-        <p class="text-success"><%= flash[:notice] %></p>
-      <% end %>
-
-      <% if flash[:alert] %>
-        <p class="text-danger"><%= flash[:alert] %></p>
-      <% end %>
 
       <%= yield %>
     </div>

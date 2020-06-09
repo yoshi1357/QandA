@@ -3,26 +3,28 @@
 
 // header
 
-body header img:hover{
-  opacity: 0.5;
-}
+body header{
 
-body header ul li{
-  list-style-type: none;
-  border-left: 1px solid white;
-}
+  img:hover{
+    opacity: 0.5;
+  }
+  ul li{
+    list-style-type: none;
+    border-left: 1px solid white;
 
-body header ul li:last-child{
-  border-right: 1px solid white;
-}
+    &:last-child{
+     border-right: 1px solid white;
+    }
 
-body header ul li a{
-  color: white;
-}
+    a{
+      color: white;
 
-body header ul li a:hover{
-  color: white;
-  opacity: 0.5;
+      &:hover{
+        color: white;
+        opacity: 0.5;
+      }
+    }
+  }
 }
 
 // footer
