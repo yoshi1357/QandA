@@ -1,29 +1,29 @@
 <% provide :title, set_title("TOP")  %>
-
-<!--パンくずリスト-->
-<div class="row text-center">
+<div id="index"  class="container">
+  <!--パンくずリスト-->
   <ol class="breadcrumb">
    <li class="breadcrumb-item active">HOME</li>
-  </lo>
-</div>
+  </ol>
 
-<h2 class="text-center my-4">投稿された質問</h2>
-<div id="index" class="row text-center">
-  <hr>
-  <% @questions.each do |question| %>
-    <div class="col-md-6">
-      <dl>
-        <dt><h4><%= link_to question.title,question_path(question) %></h4></dt>
-        <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
-        <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
-        <hr>
-      </dl>
-    </div>
-  <% end %>
+  <h2 class="text-center my-4">投稿された質問</h2>
+  <section class="row text-center">
+    <% @questions.each do |question| %>
+      <div class="col-md-6">
+        <dl>
+          <hr>
+          <dt><h4><%= link_to question.title,question_path(question) %></h4></dt>
+          <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
+          <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
+          <hr>
+        </dl>
+      </div>
+    <% end %>
+  </section>
+
+  <div>
+    <%= link_to '新規質問投稿画面へ', new_question_path  %>
+  </div>
+  <!--#ページネーションを表示したいところへ-->
+  <div class="paginate"><%= paginate @questions %></div>
 </div>
-<div>
-  <%= link_to '新規質問投稿画面へ', new_question_path  %>
-</div>
-<!--#ページネーションを表示したいところへ-->
-<div class="paginate"><%= paginate @questions %></div>
 

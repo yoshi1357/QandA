@@ -11,7 +11,7 @@
 
   <body>
     <!--ヘッダー-->
-    <header class="py-4">
+    <header class="py-3">
       <div class="container text-center">
         <%= link_to root_path, target: "_blank" do %>
           <%= image_tag 'QA_logo.jpg' %>
@@ -27,29 +27,22 @@
             <%= f.text_field :word %>
             <%= f.submit "質問を検索" %>
           <% end %>
-
-          <% if flash[:notice] %>
-            <p class="text-success"><%= flash[:notice] %></p>
-          <% end %>
-
-          <% if flash[:alert] %>
-            <p class="text-danger"><%= flash[:alert] %></p>
-          <% end %>
         </li>
       </ul>
-
-
     </header>
-    <!--ヘッダー-->
+    <!--ヘッダー終わり-->
 
 
+    <!--フラッシュメッセージ-->
+    <% if flash[:notice] %>
+      <p class="text-success"><%= flash[:notice] %></p>
+    <% end %>
 
-    <div class="container">
-      <!--検索機能-->
+    <% if flash[:alert] %>
+      <p class="text-danger"><%= flash[:alert] %></p>
+    <% end %>
 
-
-      <%= yield %>
-    </div>
+    <%= yield %>
 
     <!--フッダー-->
     <footer class="py-4 mt-4 bg-dark text-light">
