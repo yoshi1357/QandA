@@ -1,4 +1,5 @@
 <% provide :title, set_title("TOP")  %>
+
 <div id="index"  class="container">
   <!--パンくずリスト-->
   <ol class="breadcrumb">
@@ -6,6 +7,7 @@
   </ol>
 
   <h2 class="text-center my-4">投稿された質問</h2>
+  <p id="search-result"><%= "検索結果は #{@questions.size}" %></p>
   <section class="row text-center">
     <% @questions.each do |question| %>
       <div class="col-md-6">
@@ -27,3 +29,8 @@
   <div class="paginate"><%= paginate @questions %></div>
 </div>
 
+<div>
+  <% @nores5_questions.each do |nores5_question| %>
+    <%= nores5_question.title %>
+  <% end %>
+</div>

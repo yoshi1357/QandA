@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   def index
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
+    @nores5_questions = Question.find(Answer.group(:question_id).order('count(question_id) DESC').limit(5).pluck(:question_id))
   end
 
   def show
@@ -52,4 +53,5 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:name, :title, :content)
     end
+
 end

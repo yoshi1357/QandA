@@ -25,7 +25,7 @@
         <li class="nav-item px-4">
           <%= form_with url: root_path, method: :get, local: true do |f| %>
             <%= f.text_field :word %>
-            <%= f.submit "質問を検索" %>
+            <%= f.submit "質問を検索", class: "q-search" %>
           <% end %>
         </li>
       </ul>

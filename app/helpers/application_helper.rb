@@ -8,4 +8,5 @@ module ApplicationHelper
   def simple_time(japan_time)
     japan_time.strftime("%Y-%m-%d %H:%M")
   end
+
 end
