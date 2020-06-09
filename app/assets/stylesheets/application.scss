@@ -33,12 +33,21 @@ body footer ul li a:hover{
 }
 
 // index
-#index dt a{
-  color: black;
+#index {
+  dt a{
+    color: black;
+  }
+  > div{
+    background-color: mistyrose;
+  }
 }
 
-#index > div {
-  background-color: mistyrose;
+.paginate nav{
+  width: 80%;
+  margin: 0 auto;
+  ul {
+    justify-content: center;
+  }
 }
 
 // show
@@ -50,3 +59,4 @@ body footer ul li a:hover{
 #show .disable{
   display: none;
 }
+
