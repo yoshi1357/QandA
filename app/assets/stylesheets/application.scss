@@ -49,10 +49,38 @@ body footer ul li a:hover{
       border-radius: 10px;
     }
   }
+
   dd{
     text-align: center;
     margin: 10px 0;
   }
+
+  span{
+    font-size: 1.3rem;
+    background-color: lightpink;
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin-right: 3px;
+    vertical-align: middle;
+  }
+
+  aside{
+
+    > article{
+      background-color: lavenderblush;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+
+      h4{
+        text-align: center;
+      }
+
+    }
+
+  }
+
+
 }
 
 .paginate nav{

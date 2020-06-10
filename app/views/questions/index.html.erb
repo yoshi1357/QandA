@@ -6,7 +6,7 @@
    <li class="breadcrumb-item active">HOME</li>
   </ol>
 
-  <div class="row">
+  <main class="row">
     <section class="col-md-8">
       <div class="p-4">
         <h2 class="text-center py-4">投稿された質問</h2>
@@ -38,7 +38,7 @@
         <% 5.times do |n| %>
           <hr>
           <dl>
-            <dt><%= link_to @nores_questions[n].title, question_path(@nores_questions[n]) %></dt>
+            <dt><span><%= n+1 %></span><%= link_to @nores_questions[n].title, question_path(@nores_questions[n]) %></dt>
             <dd><%= "回答数: #{@nores[n]}" %></dd>
           </dl>
           <hr>
@@ -46,10 +46,10 @@
       </article>
       <article>
         <h4>最近に投稿された質問TOP5</h4>
-        <% @latest_questions.each do |latest_question| %>
+        <% @latest_questions.each_with_index do |latest_question, i| %>
           <hr>
           <dl>
-            <dt><%= link_to latest_question.title, question_path(latest_question) %></dt>
+            <dt><span><%= i+1 %></span><%= link_to latest_question.title, question_path(latest_question) %></dt>
             <dd><%= "投稿日時: #{simple_time(latest_question.created_at)}" %></dd>
           </dl>
           <hr>
