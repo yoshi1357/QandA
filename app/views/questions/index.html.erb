@@ -6,8 +6,8 @@
    <li class="breadcrumb-item active">HOME</li>
   </ol>
 
-  <main class="row">
-    <section class="col-md-8">
+  <div class="row">
+    <main class="col-md-8">
       <div class="p-4">
         <h2 class="text-center py-4">投稿された質問</h2>
         <p id="search-result"><%= "検索結果は #{@questions.size}" %></p>
@@ -17,6 +17,7 @@
               <dl>
                 <hr>
                 <dt><%= link_to question.title,question_path(question) %></dt>
+                <dd class="qcontent text-left"><%= question.content %></dd>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
                 <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
                 <hr>
@@ -26,11 +27,10 @@
         </div>
       </div>
 
-
       <%= link_to '新規質問投稿画面へ', new_question_path  %>
       <!--#ページネーションを表示したいところへ-->
       <block class="paginate"><%= paginate @questions %></block>
-    </section>
+    </main>
 
     <aside class="col-md-4">
       <article>
@@ -61,6 +61,3 @@
 
 </div>
 
-<div>
-
-</div>

@@ -42,17 +42,26 @@ body footer ul li a:hover{
   dt a{
     color: black;
   }
-  section{
+
+  main{
+
 
     > div{
       background-color: mistyrose;
       border-radius: 10px;
     }
+
   }
+
+
 
   dd{
     text-align: center;
     margin: 10px 0;
+  }
+
+  .qcontent{
+    display: none;
   }
 
   span{

@@ -7,7 +7,13 @@ document.addEventListener("turbolinks:load", function() {
     }
 
     {//index
+      const time = 500;
 
+      $("#index main dt").hover(function(){
+        $(this).next().stop().fadeIn(time);
+      },function(){
+        $(this).next().stop().fadeOut(time);
+      });
 
     }
 
