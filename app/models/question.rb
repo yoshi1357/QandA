@@ -7,7 +7,7 @@ class Question < ApplicationRecord
 
   scope :search, -> (word){ word ? where(['title LIKE ?', "%#{word}%"]) : all }
 
-  scope :latest5, -> { order(created_at: "DESC").limit(5) if count > 5 }
+  scope :latest, -> (n){ order(created_at: "DESC").limit(n) if count > n }
 
   # def self.search(word) #self.はUser.を意味する
   #   if word

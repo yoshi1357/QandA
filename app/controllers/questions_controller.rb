@@ -6,7 +6,11 @@ class QuestionsController < ApplicationController
   def index
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
-    @nores5_questions = Question.find(Answer.group(:question_id).order('count(question_id) DESC').limit(5).pluck(:question_id))
+
+    @nores_questions = Question.find(Answer.nores.keys)
+    @nores = Answer.nores.values
+
+    @latest_questions = Question.latest(5)
   end
 
   def show

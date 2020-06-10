@@ -6,31 +6,61 @@
    <li class="breadcrumb-item active">HOME</li>
   </ol>
 
-  <h2 class="text-center my-4">投稿された質問</h2>
-  <p id="search-result"><%= "検索結果は #{@questions.size}" %></p>
-  <section class="row text-center">
-    <% @questions.each do |question| %>
-      <div class="col-md-6">
-        <dl>
-          <hr>
-          <dt><h4><%= link_to question.title,question_path(question) %></h4></dt>
-          <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
-          <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
-          <hr>
-        </dl>
+  <div class="row">
+    <section class="col-md-8">
+      <div class="p-4">
+        <h2 class="text-center py-4">投稿された質問</h2>
+        <p id="search-result"><%= "検索結果は #{@questions.size}" %></p>
+        <div class="row">
+          <% @questions.each do |question| %>
+            <article class="col-md-6">
+              <dl>
+                <hr>
+                <dt><%= link_to question.title,question_path(question) %></dt>
+                <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
+                <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
+                <hr>
+              </dl>
+            </article>
+          <% end %>
+        </div>
       </div>
-    <% end %>
-  </section>
 
-  <div>
-    <%= link_to '新規質問投稿画面へ', new_question_path  %>
+
+      <%= link_to '新規質問投稿画面へ', new_question_path  %>
+      <!--#ページネーションを表示したいところへ-->
+      <block class="paginate"><%= paginate @questions %></block>
+    </section>
+
+    <aside class="col-md-4">
+      <article>
+        <h4>回答の数が多い質問TOP5</h4>
+        <% 5.times do |n| %>
+          <hr>
+          <dl>
+            <dt><%= link_to @nores_questions[n].title, question_path(@nores_questions[n]) %></dt>
+            <dd><%= "回答数: #{@nores[n]}" %></dd>
+          </dl>
+          <hr>
+        <% end %>
+      </article>
+      <article>
+        <h4>最近に投稿された質問TOP5</h4>
+        <% @latest_questions.each do |latest_question| %>
+          <hr>
+          <dl>
+            <dt><%= link_to latest_question.title, question_path(latest_question) %></dt>
+            <dd><%= "投稿日時: #{simple_time(latest_question.created_at)}" %></dd>
+          </dl>
+          <hr>
+        <% end %>
+      </article>
+    </aside>
+
   </div>
-  <!--#ページネーションを表示したいところへ-->
-  <div class="paginate"><%= paginate @questions %></div>
+
 </div>
 
 <div>
-  <% @nores5_questions.each do |nores5_question| %>
-    <%= nores5_question.title %>
-  <% end %>
+
 </div>

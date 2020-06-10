@@ -42,8 +42,16 @@ body footer ul li a:hover{
   dt a{
     color: black;
   }
-  > section{
-    background-color: mistyrose;
+  section{
+
+    > div{
+      background-color: mistyrose;
+      border-radius: 10px;
+    }
+  }
+  dd{
+    text-align: center;
+    margin: 10px 0;
   }
 }
 
