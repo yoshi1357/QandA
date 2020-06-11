@@ -16,7 +16,7 @@
             <article class="col-md-6">
               <dl>
                 <hr>
-                <dt><%= link_to question.title,question_path(question) %></dt>
+                <dt><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
                 <dd class="qcontent text-left"><%= question.content %></dd>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
                 <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
@@ -38,7 +38,7 @@
         <% 5.times do |n| %>
           <hr>
           <dl>
-            <dt><span><%= n+1 %></span><%= link_to @nores_questions[n].title, question_path(@nores_questions[n]) %></dt>
+            <dt><span><%= n+1 %></span><%= link_to @nores_questions[n].title.truncate(20), question_path(@nores_questions[n]) %></dt>
             <dd><%= "回答数: #{@nores[n]}" %></dd>
           </dl>
           <hr>
@@ -49,7 +49,7 @@
         <% @latest_questions.each_with_index do |latest_question, i| %>
           <hr>
           <dl>
-            <dt><span><%= i+1 %></span><%= link_to latest_question.title, question_path(latest_question) %></dt>
+            <dt><span><%= i+1 %></span><%= link_to latest_question.title.truncate(20), question_path(latest_question) %></dt>
             <dd><%= "投稿日時: #{simple_time(latest_question.created_at)}" %></dd>
           </dl>
           <hr>
