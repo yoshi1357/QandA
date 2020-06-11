@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   def index
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
+    @search_qs = Question.where("title LIKE(?)", "%#{params[:word]}%")
 
     @nores_questions = Question.find(Answer.nores.keys)
     @nores = Answer.nores.values

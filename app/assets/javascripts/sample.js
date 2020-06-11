@@ -7,12 +7,33 @@ document.addEventListener("turbolinks:load", function() {
     }
 
     {//index
-      const time = 500;
+      const TIME = 500;
 
       $("#index main dt").hover(function(){
-        $(this).next().stop().fadeIn(time);
+        $(this).next().stop().fadeIn(TIME);
       },function(){
-        $(this).next().stop().fadeOut(time);
+        $(this).next().stop().fadeOut(TIME);
+      });
+
+      $(".q-search").click(function() {
+          let input = $("#word").val();
+
+          $.ajax({
+            type:'GET', // リクエストのタイプはGETです
+            url: '/', // URLは"/meals"を指定します
+            data: {word: input}, // コントローラへフォームの値を送信します
+            dataType: 'json' // データの型はjsonで指定します
+          })
+          .done(function(data){
+            $("#index main dl").remove();
+            data.forEach(function(search_q){
+              console.log($("#index main article"));
+              $("#index main article").append(`<li>${search_q.title}</li>`);
+            });
+          })
+          .fail(function(){
+            alert('通信に失敗しました');
+          });
       });
 
     }
