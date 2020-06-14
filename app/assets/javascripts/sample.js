@@ -25,10 +25,14 @@ document.addEventListener("turbolinks:load", function() {
             dataType: 'json' // データの型はjsonで指定します
           })
           .done(function(data){
-            $("#index main dl").remove();
+            $("#index main article").remove();
+            if ($("#index main div > div > ul").length){
+               $("#index main div > div").empty()
+            }
+            $("#index main div > div").append("<ul></ul>");
+            console.log( $("#index main div > div"));
             data.forEach(function(search_q){
-              console.log($("#index main article"));
-              $("#index main article").append(`<li>${search_q.title}</li>`);
+              $("#index main div > div > ul").append(`<li>${search_q.title}</li>`);
             });
           })
           .fail(function(){
