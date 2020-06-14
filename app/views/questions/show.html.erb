@@ -1,5 +1,5 @@
-
-<div id="show" class="row">
+<% provide :title, set_title("質問詳細")  %>
+<div id="show" class="container">
 
   <!--パンくずリスト-->
   <ol class="breadcrumb">
@@ -7,61 +7,75 @@
    <li class="breadcrumb-item active">質問詳細</li>
   </ol>
 
-  <div class="col-md-12">
-    <dl>
-      <dt><h4><%= @question.title %></h4></dt>
-      <dd class="content my-4"><%= @question.content %></dd>
-      <dd>投稿者名: <%= @question.name %></dd>
-      <dd>投稿日時: <%= @question.created_at %></dd>
-    </dl>
-
-    <hr>
-
-    <div>
-      <h3>この質問への回答</h3>
-      <% if @question.answers.any? %>
-        <% @question.answers.each do |answer| %>
+  <div class="row">
+    <main class="col-md-8">
+      <div class="p-4">
+        <article>
           <dl>
-            <dt><h4><%= answer.content %></h4></dt>
-            <dd>投稿日時: <%= answer.name %></dd>
-            <dd>投稿日時: <%= answer.created_at %></dd>
-            <dd>[<%= link_to '編集',edit_question_answer_path(@question,answer) %>][<%= link_to '消去', question_answer_path(@question,answer), method: :delete %>]</dd>
+            <dt><h4><%= @question.title %></h4></dt>
+            <dd class="content my-4"><%= @question.content %></dd>
+            <dd>投稿者名: <%= @question.name %></dd>
+            <dd>投稿日時: <%= simple_time(@question.created_at) %></dd>
           </dl>
+        </article>
+
+        <hr>
+
+        <section>
+          <h3 class="text-center">この質問への回答</h3>
           <hr>
-        <% end %>
-      <% else %>
-        この質問への回答はまだありません
-      <% end %>
-    </div>
+          <% if @question.answers.any? %>
+            <% @question.answers.each do |answer| %>
+              <dl>
+                <dt><h4><%= answer.content %></h4></dt>
+                <dd>投稿者名: <%= answer.name %></dd>
+                <dd>投稿日時: <%= simple_time(answer.created_at) %></dd>
+                <dd>[<%= link_to '編集',edit_question_answer_path(@question,answer) %>][<%= link_to '消去', question_answer_path(@question,answer), method: :delete %>]</dd>
+              </dl>
+              <hr>
+            <% end %>
+          <% else %>
+            <p class="text-center">この質問への回答はまだありません</p>
+          <% end %>
+        </section>
 
-    <hr>
-    <div class="text-center"><button class="answer-btn btn btn-danger my-4">この質問に回答する！</button></div>
+        <hr>
 
-    <div class="disable">
-      <h3>この質問に回答する</h3>
-      <%= form_with model: [@question,@answer],local: true do |f|  %>
-        <%= f.hidden_field :question_id, {value: @question.id} %>
+        <!--ボタンでフォームを開閉-->
+        <section>
+          <button class="btn btn-danger d-block mx-auto my-4">この質問に回答する！</button>
+          <section class="disable">
+            <h3 class="text-center">この質問に回答する</h3>
+            <%= form_with model: [@question,@answer],local: true do |f|  %>
+              <%= f.hidden_field :question_id, {value: @question.id} %>
 
-        <div class="form-group">
-          <label>名前</label>
-          <%= f.text_field :name, class: "form-control" %>
+              <div class="form-group">
+                <label>名前</label>
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <label>回答</label>
+                <%= f.text_area :content, class: "form-control", size: "30x10" %>
+              </div>
+
+              <div class="text-center">
+                <%= f.submit "回答を投稿", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </section>
+        </section>
+
+
+        <div>
+          <%= link_to '>Home', root_path %>
         </div>
 
-        <div class="form-group">
-          <label>回答</label>
-          <%= f.text_area :content, class: "form-control", size: "30x10" %>
-        </div>
+      </div>
 
-        <div class="text-center">
-          <%= f.submit "回答を投稿", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-    </div>
+    </main>
 
-
-    <div>
-      <%= link_to '>Home', root_path %>
-    </div>
+    <%= render 'aside' %>
 
   </div>
 </div>

@@ -81,13 +81,10 @@ html{
       border-radius: 10px;
     }
 
-    .qcontent{
-      display: none;
-    }
-
   }
 
 }
+
 // index
 #index {
 
@@ -100,12 +97,6 @@ html{
   }
 
   main{
-
-
-    > div{
-      background-color: mistyrose;
-      border-radius: 10px;
-    }
 
     .qcontent{
       display: none;
@@ -124,13 +115,16 @@ html{
 }
 
 
-// show
+// // show
 
-#show .content{
-  font-size: 1.2em;
-}
+#show{
+  .content{
+    font-size: 1.2em;
+  }
 
-#show .disable{
-  display: none;
+  .disable{
+    display: none;
+  }
+
 }
 
