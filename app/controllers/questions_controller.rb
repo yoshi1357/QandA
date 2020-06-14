@@ -10,7 +10,8 @@ class QuestionsController < ApplicationController
   def index
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
-    @search_qs = Question.where("title LIKE(?)", "%#{params[:word]}%")
+    @search_qs = Question.search(params[:word])
+    @keyword = params[:word]
   end
 
   def show

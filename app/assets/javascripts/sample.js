@@ -30,6 +30,8 @@ document.addEventListener("turbolinks:load", function() {
             dataType: 'json' // データの型はjsonで指定します
           })
           .done(function(data){
+            //h2を書き換える
+            $("main h2").html(`検索結果は${data.length}件です`)
             // 前の検索結果が残っていれば削除
             if ($("#index main div > div > article").length){
                $("#index main div > div").empty()
@@ -37,8 +39,8 @@ document.addEventListener("turbolinks:load", function() {
             // articleを挿入して、articleの中にliで並べていく
 
             data.forEach(function(search_q,i){
-              $("#index main div > div").append("<article></article>");
-              $(`#index main div > div > article:nth-child(${i + 1})`).append(`<dl><dt>${search_q.title}</dt></dl>`);
+              $("#index main div > div").append('<article class="col-md-6"></article>');
+              $(`#index main div > div > article:nth-child(${i + 1})`).append(`<dl><hr><dt>${search_q.title}</dt><hr></dl>`);
             });
           })
           .fail(function(){
