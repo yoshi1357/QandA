@@ -1,14 +1,21 @@
-<!--パンくずリスト-->
-<div class="container text-center">
+<% provide :title, set_title("質問編集")  %>
+<div id="edit" class="container">
+  <!--パンくずリスト-->
   <ol class="breadcrumb">
    <li class="breadcrumb-item"><a href="/">HOME</a></li>
    <li class="breadcrumb-item active">質問編集</li>
   </ol>
-</div>
 
-<div>
-  <div class="col-md-4 offset-md-4">
-    <h2 class="text-center">Edit Question</h2>
-    <%= render 'form' %>
+  <div class="row">
+    <main class="col-md-8">
+      <div class="p-4">
+        <h2 class="text-center">質問を編集</h2>
+        <%= render 'form' %>
+      </div>
+    </main>
+
+    <%= render 'aside' %>
+
   </div>
+
 </div>
