@@ -31,7 +31,7 @@
       <block class="paginate"><%= paginate @questions %></block>
     </main>
 
-    <%= render 'aside' %>
+    <%= render partial: 'aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
 
   </div>
 

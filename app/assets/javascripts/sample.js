@@ -2,6 +2,11 @@ document.addEventListener("turbolinks:load", function() {
   $(function() {
 
     {// 共通
+      console.log($("body nav button"));
+      $("body nav button").click(function(){
+        $("body nav div li").toggleClass('sm');
+        console.log($("body nav div li"));
+      });
 
 
     }

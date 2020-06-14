@@ -46,23 +46,9 @@
           <button class="btn btn-danger d-block mx-auto my-4">この質問に回答する！</button>
           <section class="disable">
             <h3 class="text-center">この質問に回答する</h3>
-            <%= form_with model: [@question,@answer],local: true do |f|  %>
-              <%= f.hidden_field :question_id, {value: @question.id} %>
 
-              <div class="form-group">
-                <label>名前</label>
-                <%= f.text_field :name, class: "form-control" %>
-              </div>
+            <%= render partial: 'answer_form', locals: {question: @question,answer: @answer} %>
 
-              <div class="form-group">
-                <label>回答</label>
-                <%= f.text_area :content, class: "form-control", size: "30x10" %>
-              </div>
-
-              <div class="text-center">
-                <%= f.submit "回答を投稿", class: "btn btn-primary" %>
-              </div>
-            <% end %>
           </section>
         </section>
 
@@ -75,7 +61,7 @@
 
     </main>
 
-    <%= render 'aside' %>
+    <%= render partial: 'aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
 
   </div>
 </div>
