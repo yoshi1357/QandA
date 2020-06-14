@@ -1,5 +1,8 @@
 class AnswersController < ApplicationController
   before_action :set_question, only:[:create, :show, :edit, :update, :destroy]
+  before_action :set_latest_questions
+  before_action :set_nores_questions
+  before_action :set_nores
 
 
   def create
@@ -37,6 +40,18 @@ class AnswersController < ApplicationController
   private
     def set_question
       @question = Question.find(params[:question_id])
+    end
+
+    def set_latest_questions
+      @latest_questions = Question.latest(5)
+    end
+
+    def set_nores_questions
+      @nores_questions = Question.find(Answer.nores.keys)
+    end
+
+    def set_nores
+      @nores = Answer.nores.values
     end
 
     def answer_params
