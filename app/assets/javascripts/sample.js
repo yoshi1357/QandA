@@ -25,14 +25,15 @@ document.addEventListener("turbolinks:load", function() {
             dataType: 'json' // データの型はjsonで指定します
           })
           .done(function(data){
-            $("#index main article").remove();
-            if ($("#index main div > div > ul").length){
+            // 前の検索結果が残っていれば削除
+            if ($("#index main div > div > article").length){
                $("#index main div > div").empty()
             }
-            $("#index main div > div").append("<ul></ul>");
-            console.log( $("#index main div > div"));
-            data.forEach(function(search_q){
-              $("#index main div > div > ul").append(`<li>${search_q.title}</li>`);
+            // articleを挿入して、articleの中にliで並べていく
+
+            data.forEach(function(search_q,i){
+              $("#index main div > div").append("<article></article>");
+              $(`#index main div > div > article:nth-child(${i + 1})`).append(`<dl><dt>${search_q.title}</dt></dl>`);
             });
           })
           .fail(function(){
