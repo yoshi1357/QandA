@@ -40,7 +40,8 @@ document.addEventListener("turbolinks:load", function() {
 
             data.forEach(function(search_q,i){
               $("#index main div > div").append('<article class="col-md-6"></article>');
-              $(`#index main div > div > article:nth-child(${i + 1})`).append(`<dl><hr><dt>${search_q.title}</dt><hr></dl>`);
+              //受け取ったidを使ってリンクを生成
+              $(`#index main div > div > article:nth-child(${i + 1})`).append(`<dl><hr><dt><a href="/questions/${search_q.id}">${search_q.title}</a></dt><hr></dl>`);
             });
           })
           .fail(function(){
