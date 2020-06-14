@@ -1,5 +1,9 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only:[:show, :edit, :update, :destroy]
+  before_action :set_latest_questions
+  before_action :set_nores_questions
+  before_action :set_nores
+
 
   PER = 10
 
@@ -7,11 +11,6 @@ class QuestionsController < ApplicationController
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
     @search_qs = Question.where("title LIKE(?)", "%#{params[:word]}%")
-
-    @nores_questions = Question.find(Answer.nores.keys)
-    @nores = Answer.nores.values
-
-    @latest_questions = Question.latest(5)
   end
 
   def show
@@ -53,6 +52,18 @@ class QuestionsController < ApplicationController
   private
     def set_question
       @question = Question.find(params[:id])
+    end
+
+    def set_latest_questions
+      @latest_questions = Question.latest(5)
+    end
+
+    def set_nores_questions
+      @nores_questions = Question.find(Answer.nores.keys)
+    end
+
+    def set_nores
+      @nores = Answer.nores.values
     end
 
     def question_params

@@ -1,37 +1,93 @@
 @charset "UTF-8";
 @import "bootstrap";
 
-// header
+// 共通
+html{
 
-body header{
+  $aside-color: lavenderblush;
+  $main-color: mistyrose;
 
-  img:hover{
-    opacity: 0.5;
-  }
-  ul li{
-    list-style-type: none;
-    border-left: 1px solid white;
+  // header
 
-    &:last-child{
-     border-right: 1px solid white;
+  body header{
+
+    img:hover{
+      opacity: 0.5;
     }
+    ul li{
+      list-style-type: none;
+      border-left: 1px solid white;
 
-    a{
-      color: white;
+      &:last-child{
+       border-right: 1px solid white;
+      }
 
-      &:hover{
+      a{
         color: white;
-        opacity: 0.5;
+
+        &:hover{
+          color: white;
+          opacity: 0.5;
+        }
       }
     }
   }
-}
 
-// footer
-body footer ul li a:hover{
-  opacity: 0.5;
-}
+  // footer
+  body footer ul li a:hover{
+    opacity: 0.5;
+  }
 
+  //aside
+  body aside{
+
+    > article{
+      background-color: $aside-color;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+
+      h4{
+        text-align: center;
+      }
+
+      span{
+        font-size: 1.3rem;
+        background-color: lightpink;
+        border-radius: 5px;
+        padding: 3px 5px;
+        margin-right: 3px;
+        vertical-align: middle;
+      }
+
+      a {
+        color: black;
+      }
+
+      dd{
+        margin: 10px 0;
+        text-align: center;
+      }
+
+    }
+
+  }
+
+  body main{
+
+
+    > div{
+      background-color: $main-color;
+      border-radius: 10px;
+    }
+
+    .qcontent{
+      display: none;
+    }
+
+  }
+
+}
 // index
 #index {
 
@@ -51,54 +107,22 @@ body footer ul li a:hover{
       border-radius: 10px;
     }
 
+    .qcontent{
+      display: none;
+    }
+
   }
-
-
-
-  dd{
-    text-align: center;
-    margin: 10px 0;
-  }
-
-  .qcontent{
-    display: none;
-  }
-
-  span{
-    font-size: 1.3rem;
-    background-color: lightpink;
-    border-radius: 5px;
-    padding: 3px 5px;
-    margin-right: 3px;
-    vertical-align: middle;
-  }
-
-  aside{
-
-    > article{
-      background-color: lavenderblush;
-      padding: 10px;
-      margin: 10px;
-      border-radius: 10px;
-
-      h4{
-        text-align: center;
-      }
-
+  .paginate nav{
+    width: 80%;
+    margin: 0 auto;
+    ul {
+      justify-content: center;
     }
 
   }
 
-
 }
 
-.paginate nav{
-  width: 80%;
-  margin: 0 auto;
-  ul {
-    justify-content: center;
-  }
-}
 
 // show
 

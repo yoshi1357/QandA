@@ -1,16 +1,23 @@
-<!--パンくずリスト-->
-<div class="container text-center">
+<% provide :title, set_title("新規質問投稿")  %>
+
+<div id="new-question" class="container">
+
+  <!--パンくずリスト-->
   <ol class="breadcrumb">
    <li class="breadcrumb-item"><a href="/">HOME</a></li>
    <li class="breadcrumb-item active">新規質問投稿</li>
   </ol>
-</div>
 
-<div id="new">
-  <div class="col-md-4 offset-md-4">
-    <h2 class="my-4 text-center">新規質問投稿</h2>
+  <div class="row">
+    <main class="col-md-8">
+      <div class="p-4">
+        <h2 class="my-4 text-center">新規質問投稿</h2>
+        <%= render 'form' %>
+      </div>
 
-    <%= render 'form' %>
+    </main>
+
+    <%= render 'aside' %>
 
   </div>
 </div>
