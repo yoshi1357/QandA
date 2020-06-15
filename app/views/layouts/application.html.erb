@@ -31,6 +31,7 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><%= link_to '投稿された質問一覧',root_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '質問を投稿する！',new_question_path, class: "nav-link" %></li>
+            <li></li>
           </ul>
         </div>
       </nav>
@@ -47,6 +48,7 @@
       <p class="text-danger"><%= flash[:alert] %></p>
     <% end %>
 
+    <!--ここに各ページのviewが入る-->
     <%= yield %>
 
     <!--フッダー-->
