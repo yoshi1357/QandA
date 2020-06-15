@@ -1,24 +1,33 @@
-<aside class="col-md-4">
-  <article>
-    <h4>回答の数が多い質問TOP5</h4>
-    <% 5.times do |n| %>
-      <hr>
-      <dl>
-        <dt><span><%= n+1 %></span><%= link_to nores_questions[n].title.truncate(20), question_path(nores_questions[n]) %></dt>
-        <dd><%= "回答数: #{nores[n]}" %></dd>
-      </dl>
-      <hr>
-    <% end %>
-  </article>
-  <article>
-    <h4>最近に投稿された質問TOP5</h4>
-    <% latest_questions.each_with_index do |latest_question, i| %>
-      <hr>
-      <dl>
-        <dt><span><%= i+1 %></span><%= link_to latest_question.title.truncate(20), question_path(latest_question) %></dt>
-        <dd><%= "投稿日時: #{simple_time(latest_question.created_at)}" %></dd>
-      </dl>
-      <hr>
-    <% end %>
-  </article>
+<aside class="col-md-4" id="aside">
+
+  <div class="nav nav-tabs">
+    <a class="nav-item nav-link active" data-toggle="tab" href="#bar1">回答数</a>
+    <a class="nav-item nav-link" data-toggle="tab" href="#bar2">最新</a>
+  </div>
+
+  <div class="tab-content">
+    <article class="tab-pane fade show active border border-top-0" id="bar1">
+      <h4>回答の数が多い質問TOP5</h4>
+      <% 5.times do |n| %>
+        <hr>
+        <dl>
+          <dt><span><%= n+1 %></span><%= link_to nores_questions[n].title.truncate(20), question_path(nores_questions[n]) %></dt>
+          <dd><%= "回答数: #{nores[n]}" %></dd>
+        </dl>
+        <hr>
+      <% end %>
+    </article>
+    <article class="tab-pane fade border border-top-0" id="bar2">
+      <h4>最近に投稿された質問TOP5</h4>
+      <% latest_questions.each_with_index do |latest_question, i| %>
+        <hr>
+        <dl>
+          <dt><span><%= i+1 %></span><%= link_to latest_question.title.truncate(20), question_path(latest_question) %></dt>
+          <dd><%= "投稿日時: #{simple_time(latest_question.created_at)}" %></dd>
+        </dl>
+        <hr>
+      <% end %>
+    </article>
+
+  </div>
 </aside>

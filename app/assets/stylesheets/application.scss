@@ -27,11 +27,8 @@ html{
 
         }
 
-        button{
-          height: 40px;
-        }
       }
-
+      // ハンバーガーを押したら付くクラス
       ul .sm{
         border-left: 0px none;
         text-align: right;
@@ -63,11 +60,9 @@ html{
   //aside
   body aside{
 
-    > article{
+    #bar1,#bar2{
       background-color: $aside-color;
       padding: 10px;
-      margin: 10px;
-      border-radius: 10px;
 
       h4{
         text-align: center;

@@ -2,10 +2,8 @@ document.addEventListener("turbolinks:load", function() {
   $(function() {
 
     {// 共通
-      console.log($("body nav button"));
-      $("body nav button").click(function(){
+      $("#hamb").click(function(){
         $("body nav div li").toggleClass('sm');
-        console.log($("body nav div li"));
       });
 
 
@@ -33,15 +31,15 @@ document.addEventListener("turbolinks:load", function() {
             //h2を書き換える
             $("main h2").html(`検索結果は${data.length}件です`)
             // 前の検索結果が残っていれば削除
-            if ($("#index main div > div > article").length){
-               $("#index main div > div").empty()
+            if ($("#wrapper-result > article").length){
+               $("#wrapper-result").empty()
             }
             // articleを挿入して、articleの中にliで並べていく
 
             data.forEach(function(search_q,i){
-              $("#index main div > div").append('<article class="col-md-6"></article>');
+              $("#wrapper-result").append('<article class="col-md-6"></article>');
               //受け取ったidを使ってリンクを生成
-              $(`#index main div > div > article:nth-child(${i + 1})`).append(`<dl><hr><dt><a href="/questions/${search_q.id}">${search_q.title}</a></dt><hr></dl>`);
+              $(`#wrapper-result > article:nth-child(${i + 1})`).append(`<dl><hr><dt><a href="/questions/${search_q.id}">${search_q.title}</a></dt><hr></dl>`);
             });
           })
           .fail(function(){

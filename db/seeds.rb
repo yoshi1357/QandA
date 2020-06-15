@@ -20,14 +20,14 @@ Faker::Config.locale = :ja
 # end
 
 100.times do |n|
-  id = Faker::Number.between(from: 1,to: 200)
+  id = Faker::Number.between(from: 1,to: Question.count)
   question = Question.find(id)
   name = Faker::Name.name
   content = Faker::Lorem.sentence(word_count: 30)
 
   Answer.create!(name: name,
-                 question: question,
-                 content: content,
+                question: question,
+                content: content,
   )
 
 end
