@@ -39,7 +39,7 @@ document.addEventListener("turbolinks:load", function() {
             data.forEach(function(search_q,i){
               $("#wrapper-result").append('<article class="col-md-6"></article>');
               //受け取ったidを使ってリンクを生成
-              $(`#wrapper-result > article:nth-child(${i + 1})`).append(`<dl><hr><dt><a href="/questions/${search_q.id}">${search_q.title}</a></dt><hr></dl>`);
+               $(`#wrapper-result > article:nth-child(${i + 1})`).append(`<dl><hr><dt><a href="/questions/${search_q.id}">${search_q.title}</a></dt><hr></dl>`);
             });
           })
           .fail(function(){
