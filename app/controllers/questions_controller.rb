@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
   before_action :set_nores_questions
   before_action :set_nores
 
+  before_action :authenticate_user!, except: [:index]
 
   PER = 10
 
@@ -11,7 +12,6 @@ class QuestionsController < ApplicationController
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
     @search_qs = Question.search(params[:word])
-    @keyword = params[:word]
   end
 
   def show

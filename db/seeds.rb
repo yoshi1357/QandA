@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Faker::Config.locale = :ja
 
+# Questionのデータを生成
 # 100.times do |n|
 #   name = Faker::Name.name
 #   title = Faker::Lorem.sentence(word_count: 10)
@@ -16,18 +17,39 @@ Faker::Config.locale = :ja
 #                   title: title,
 #                   content: content,
 #   )
-
 # end
 
+# Answerのデータを生成
+# 100.times do |n|
+#   id = Faker::Number.between(from: 1,to: Question.count)
+#   question = Question.find(id)
+#   name = Faker::Name.name
+#   content = Faker::Lorem.sentence(word_count: 30)
+
+#   Answer.create!(name: name,
+#                 question: question,
+#                 content: content,
+#   )
+# end
+
+# Userのデータを生成
+# 100.times do |n|
+#   name = Faker::name
+#   email = Faker::Internet.email
+#   password = "password"
+
+#   User.create!(name: name,
+#               email: email,
+#               password: password,
+#               password_confirmation: password,
+#               )
+# end
+
+# Questionにuser_idを設定
 100.times do |n|
-  id = Faker::Number.between(from: 1,to: Question.count)
-  question = Question.find(id)
-  name = Faker::Name.name
-  content = Faker::Lorem.sentence(word_count: 30)
+  user_id = Faker::Number.between(from: 1,to: User.count)
+  question = Question.find(n + 1)
 
-  Answer.create!(name: name,
-                question: question,
-                content: content,
-  )
-
+  question.user_id = user_id
+  question.save
 end
