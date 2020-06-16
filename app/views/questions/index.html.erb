@@ -1,7 +1,7 @@
 <% provide :title, set_title("TOP")  %>
 
 <div id="index"  class="container">
-  <!--パンくずリスト-->
+  パンくずリスト
   <ol class="breadcrumb">
    <li class="breadcrumb-item active">HOME</li>
   </ol>
@@ -18,7 +18,7 @@
                 <dt><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
                 <dd class="qcontent text-left"><%= question.content %></dd>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
-                <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
+                <dd>[ <%= link_to '編集', edit_user_question_path(question) %> ] [ <%= link_to '消去', user_question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
                 <hr>
               </dl>
             </article>
@@ -27,7 +27,7 @@
       </div>
 
       <%= link_to '新規質問投稿画面へ', new_question_path  %>
-      <!--#ページネーションを表示したいところへ-->
+      #ページネーションを表示したいところへ
       <block class="paginate"><%= paginate @questions %></block>
     </main>
 
@@ -37,3 +37,16 @@
 
 </div>
 
+<h1>ログインアプリ</h1>
+
+<% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+  <!-- ユーザーがログインしていた時の処理 -->
+  <h2> 現在 <%= current_user.name %> さんがログインしています </h2>
+  <h4> メールアドレス： <%= current_user.email %> </h4>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
+<% else %>
+  <!-- ユーザーがログインしていなかった時の処理 -->
+  <h2> 現在ログインしていません </h2>
+  <%= link_to "ログイン", new_user_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
+  <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
+<% end %>
