@@ -18,7 +18,7 @@
                 <dt><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
                 <dd class="qcontent text-left"><%= question.content %></dd>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
-                <% if current_user.id == question.user_id  %>
+                <% if user_signed_in? && current_user.id == question.user_id  %>
                   <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
                 <% end %>
                 <hr>

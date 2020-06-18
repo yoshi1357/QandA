@@ -14,12 +14,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users do
-    member do
-      get 'questions'
-      get 'answers'
-    end
-  end
+  resources :users
 
   resources :questions do
     resources :answers

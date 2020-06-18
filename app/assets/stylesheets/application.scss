@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "bootstrap";
 
+
 // 共通
 html{
 
@@ -27,7 +28,15 @@ html{
 
         }
 
+        a.nav-link{
+          color: rgba(255, 255, 255, 1.0)!important;
+          &:hover{
+            opacity: 0.5;
+          }
+        }
+
       }
+
       // ハンバーガーを押したら付くクラス
       ul .sm{
         border-left: 0px none;
@@ -144,4 +153,3 @@ html{
   }
 
 }
-

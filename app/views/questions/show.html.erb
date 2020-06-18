@@ -16,7 +16,7 @@
             <dd class="content my-4"><%= @question.content %></dd>
             <dd>投稿者名: <%= @question.name %></dd>
             <dd>投稿日時: <%= simple_time(@question.created_at) %></dd>
-            <% if current_user.id == @question.user_id  %>
+            <% if user_sign_in? && current_user.id == @question.user_id  %>
               <dd>[ <%= link_to '編集', edit_question_path(@question) %> ] [ <%= link_to '消去', question_path(@question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
             <% end %>
           </dl>
