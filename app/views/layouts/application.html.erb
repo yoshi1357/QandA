@@ -42,13 +42,13 @@
 
 
     <!--フラッシュメッセージ-->
-    <!--<% if flash[:notice] %>-->
-    <!--  <p class="text-success"><%= flash[:notice] %></p>-->
-    <!--<% end %>-->
+    <% if flash[:notice] %>
+      <p class="text-success"><%= flash[:notice] %></p>
+    <% end %>
 
-    <!--<% if flash[:alert] %>-->
-    <!--  <p class="text-danger"><%= flash[:alert] %></p>-->
-    <!--<% end %>-->
+    <% if flash[:alert] %>
+      <p class="text-danger"><%= flash[:alert] %></p>
+    <% end %>
 
     <!--ここに各ページのviewが入る-->
     <%= yield %>

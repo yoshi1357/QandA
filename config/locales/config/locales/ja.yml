@@ -1,5 +1,11 @@
----
 ja:
+  views:
+      pagination:
+        first: '最初'
+        last: '最後'
+        previous: '前'
+        next: '次'
+        truncate: '...'
   activerecord:
     errors:
       messages:
@@ -7,6 +13,13 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      user:
+        name:
+        email:
+        password:
+        password_confirmation:
+          blank: "空白だ"
   date:
     abbr_day_names:
     - 日

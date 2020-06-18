@@ -52,6 +52,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'i18n_generators'
 end
 
 group :test do
@@ -72,4 +73,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails', '~> 4.3.1'
 gem 'kaminari'
+gem 'kaminari-i18n'
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'rails-i18n'

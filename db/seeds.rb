@@ -34,7 +34,7 @@ Faker::Config.locale = :ja
 
 # Userのデータを生成
 # 100.times do |n|
-#   name = Faker::name
+#   name = Faker::Name.name
 #   email = Faker::Internet.email
 #   password = "password"
 
