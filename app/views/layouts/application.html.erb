@@ -33,7 +33,7 @@
             <li class="nav-item"><%= link_to '質問を投稿する！', new_question_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしてよろしいですか？", cancel: 'Cansel', commit: 'OK'}, title: 'ログアウト確認画面', class: "nav-link" %></li>
           </ul>
         </div>
       </nav>
@@ -42,13 +42,15 @@
 
 
     <!--フラッシュメッセージ-->
-    <% if flash[:notice] %>
-      <p class="text-success"><%= flash[:notice] %></p>
-    <% end %>
+    <div class="container">
+      <% if flash[:notice] %>
+        <p class="alert alert-success"><%= flash[:notice] %></p>
+      <% end %>
 
-    <% if flash[:alert] %>
-      <p class="text-danger"><%= flash[:alert] %></p>
-    <% end %>
+      <% if flash[:alert] %>
+        <p class="alert alert-danger"><%= flash[:alert] %></p>
+      <% end %>
+    </div>
 
     <!--ここに各ページのviewが入る-->
     <%= yield %>
