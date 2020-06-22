@@ -20,7 +20,7 @@
 
       <!--ナビバー-->
       <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-center">
-        <%= form_with url: root_path, method: :get do |f| %>
+        <%= form_with url: root_path, method: :get, local: true do |f| %>
           <%= f.text_field :word %>
           <%= f.submit "質問を検索", class: "q-search" %>
         <% end %>
