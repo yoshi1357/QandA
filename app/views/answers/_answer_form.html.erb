@@ -1,5 +1,6 @@
 <%= form_with model: [question,answer],local: true do |f|  %>
-  <%= f.hidden_field :question_id, {value: @question.id} %>
+  <%= f.hidden_field :question_id, {value: question.id} %>
+
 
   <div class="form-group">
     <label>名前</label>

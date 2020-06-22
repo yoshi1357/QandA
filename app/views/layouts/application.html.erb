@@ -34,6 +34,10 @@
             <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしてよろしいですか？", cancel: 'Cansel', commit: 'OK'}, title: 'ログアウト確認画面', class: "nav-link" %></li>
+            <% if user_signed_in? %>
+              <!--マイページへのリンク-->
+              <li class="nav-item"><%= link_to current_user.email, "#", class: "nav-link" %></li>
+            <% end %>
           </ul>
         </div>
       </nav>

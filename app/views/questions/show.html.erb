@@ -14,11 +14,22 @@
           <dl>
             <dt><h4><%= @question.title %></h4></dt>
             <dd class="content my-4"><%= @question.content %></dd>
-            <dd>投稿者名: <%= @question.name %></dd>
-            <dd>投稿日時: <%= simple_time(@question.created_at) %></dd>
             <% if user_signed_in? && current_user.id == @question.user_id  %>
               <dd>[ <%= link_to '編集', edit_question_path(@question) %> ] [ <%= link_to '消去', question_path(@question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
             <% end %>
+            <profile class="d-flex align-items-center">
+              <thumbnail>
+                <% if @question.user.image? %>
+                  <%= @question.user.image.url %>
+                <% else %>
+                  <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4' %>
+                <% end %>
+              </thumbnail>
+              <content>
+                <p>投稿者名: <%= @question.user.name %></p>
+                <p>投稿日時: <%= simple_time(@question.created_at) %></p>
+              </content>
+            </profile>
           </dl>
         </article>
 

@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_action :set_nores_questions
   before_action :set_nores
 
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   PER = 10
 
@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new
     if @question.update(question_params)
-      redirect_to root_path,notice: "Success!"
+      redirect_to root_path,notice: "質問が投稿されました"
     else
       flash[:alert] = "Save error!"
       render :new
@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
 
   def update
      if @question.update(question_params)
-      redirect_to root_path,notice: "Success!"
+      redirect_to root_path,notice: "質問が更新されました"
      else
       flash[:alert] = "Save error!"
       render :edit
@@ -70,7 +70,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:name, :title, :content)
+      params.require(:question).permit(:name, :title, :content, :user_id)
     end
 
 end
