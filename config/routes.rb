@@ -16,11 +16,10 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :questions, only: [:edit, :update, :destroy]
-    resources :answers, only:  [:edit, :update, :destroy]
   end
 
   resources :questions do
-    resources :answers
+    resources :answers, only: [:create]
   end
   #   # 個人での利用のもの
   #   resources :questions, only: [:edit, :update, :destroy]

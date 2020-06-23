@@ -43,9 +43,6 @@
               <dl>
                 <dt><h4><%= answer.content %></h4></dt>
 
-                <% if user_signed_in? && current_user.id == answer.user_id  %>
-                  <dd>[<%= link_to '編集',edit_question_answer_path(@question,answer) %>][<%= link_to '消去', question_answer_path(@question,answer), method: :delete, data: {confirm: 'Are you sure?'} %>]</dd>
-                <% end %>
                 <profile class="d-flex align-items-center flex-row-reverse">
                   <thumbnail>
                     <% if answer.user.image? %>

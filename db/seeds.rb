@@ -7,43 +7,47 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Faker::Config.locale = :ja
 
-# Questionのデータを生成
-# 100.times do |n|
-#   name = Faker::Name.name
-#   title = Faker::Lorem.sentence(word_count: 10)
-#   content = Faker::Lorem.sentence(word_count: 30)
+# Userのデータを生成
+100.times do |n|
+  name = Faker::Name.name
+  email = Faker::Internet.email
+  password = "password"
 
-#   Question.create!(name: name,
-#                   title: title,
-#                   content: content,
-#   )
-# end
+  User.create!(name: name,
+              email: email,
+              password: password,
+              password_confirmation: password,
+              )
+end
+
+
+# Questionのデータを生成
+100.times do |n|
+  title = Faker::Lorem.sentence(word_count: 10)
+  content = Faker::Lorem.sentence(word_count: 30)
+  user_id = Faker::Number.between(from: 1,to: User.count)
+
+  Question.create!(title: title,
+                  content: content,
+                  user_id: user_id
+  )
+end
 
 # Answerのデータを生成
-# 100.times do |n|
-#   id = Faker::Number.between(from: 1,to: Question.count)
-#   question = Question.find(id)
-#   name = Faker::Name.name
-#   content = Faker::Lorem.sentence(word_count: 30)
+100.times do |n|
+  id = Faker::Number.between(from: 1,to: Question.count)
+  question = Question.find(id)
+  content = Faker::Lorem.sentence(word_count: 30)
+  user_id = Faker::Number.between(from: 1,to: User.count)
 
-#   Answer.create!(name: name,
-#                 question: question,
-#                 content: content,
-#   )
-# end
+  Answer.create!(question: question,
+                content: content,
+                user_id: user_id
 
-# Userのデータを生成
-# 100.times do |n|
-#   name = Faker::Name.name
-#   email = Faker::Internet.email
-#   password = "password"
+  )
+end
 
-#   User.create!(name: name,
-#               email: email,
-#               password: password,
-#               password_confirmation: password,
-#               )
-# end
+
 
 # Questionにuser_idを設定
 # 100.times do |n|
@@ -56,11 +60,11 @@ Faker::Config.locale = :ja
 
 
 # Answerにuser_idを設定
-100.times do |n|
-  user_id = Faker::Number.between(from: 1,to: User.count)
-  # nは0から始まるためn+1
-  answer = Answer.find(n + 1)
+# 100.times do |n|
+#   user_id = Faker::Number.between(from: 1,to: User.count)
+#   # nは0から始まるためn+1
+#   answer = Answer.find(n + 1)
 
-  answer.user_id = user_id
-  answer.save
-end
+#   answer.user_id = user_id
+#   answer.save
+# end
