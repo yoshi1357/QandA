@@ -13,12 +13,12 @@
       <div class="p-4">
         <h2 class="text-center">回答を編集</h2>
 
-        <%= render partial: 'answer_form', locals: {question: @question,answer: @answer} %>
+        <%= render partial: 'layouts/answer_form', locals: {question: @question,answer: @answer} %>
 
       </div>
     </main>
 
-    <%= render partial: 'aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
+    <%= render partial: 'layouts/aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
 
   </div>
 </div>

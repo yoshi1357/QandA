@@ -1,10 +1,10 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only:[:show, :edit, :update, :destroy]
-  before_action :set_latest_questions
-  before_action :set_nores_questions
-  before_action :set_nores
+  before_action :set_latest_questions, :set_nores_questions, :set_nores
 
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index,]
+  before_action :correct_user?, only: [:edit,:update,:destroy,]
+
 
   PER = 10
 
@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
     if @question.update(question_params)
       redirect_to root_path,notice: "質問が投稿されました"
     else
-      flash[:alert] = "Save error!"
+      flash[:alert] = "質問の投稿に失敗しました"
       render :new
     end
   end
@@ -42,32 +42,17 @@ class QuestionsController < ApplicationController
      if @question.update(question_params)
       redirect_to root_path,notice: "質問が更新されました"
      else
-      flash[:alert] = "Save error!"
+      flash[:alert] = "質問の更新に失敗しました"
       render :edit
      end
   end
 
   def destroy
     @question.destroy
-    redirect_to root_path,notice: "Success!"
+    redirect_to root_path,notice: "質問を削除しました"
   end
 
   private
-    def set_question
-      @question = Question.find(params[:id])
-    end
-
-    def set_latest_questions
-      @latest_questions = Question.latest(5)
-    end
-
-    def set_nores_questions
-      @nores_questions = Question.find(Answer.nores.keys)
-    end
-
-    def set_nores
-      @nores = Answer.nores.values
-    end
 
     def question_params
       params.require(:question).permit(:name, :title, :content, :user_id)

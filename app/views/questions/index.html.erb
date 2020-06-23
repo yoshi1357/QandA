@@ -22,7 +22,7 @@
                 <dd class="qcontent text-left"><%= question.content %></dd>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
                 <% if user_signed_in? && current_user.id == question.user_id  %>
-                  <dd>[ <%= link_to '編集', edit_question_path(question) %> ] [ <%= link_to '消去', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
+                  <dd>[ <%= link_to '編集', edit_user_question_path(current_user, question) %> ] [ <%= link_to '消去', user_question_path(current_user, question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
                 <% end %>
                 <hr>
               </dl>
@@ -36,7 +36,7 @@
       <block class="paginate"><%= paginate @questions %></block>
     </main>
 
-    <%= render partial: 'aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
+    <%= render partial: 'layouts/aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
 
   </div>
 

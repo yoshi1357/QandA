@@ -46,10 +46,21 @@ Faker::Config.locale = :ja
 # end
 
 # Questionにuser_idを設定
+# 100.times do |n|
+#   user_id = Faker::Number.between(from: 1,to: User.count)
+#   question = Question.find(n + 1)
+
+#   question.user_id = user_id
+#   question.save
+# end
+
+
+# Answerにuser_idを設定
 100.times do |n|
   user_id = Faker::Number.between(from: 1,to: User.count)
-  question = Question.find(n + 1)
+  # nは0から始まるためn+1
+  answer = Answer.find(n + 1)
 
-  question.user_id = user_id
-  question.save
+  answer.user_id = user_id
+  answer.save
 end

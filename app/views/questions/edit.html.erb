@@ -11,7 +11,7 @@
     <main class="col-md-8">
       <div class="p-4">
         <h2 class="text-center">質問を編集</h2>
-        <%= render partial: 'question-form', locals: {question: @question} %>
+        <%= render partial: 'question-form', locals: {question: @question, models: [current_user,@question]} %>
       </div>
     </main>
 
