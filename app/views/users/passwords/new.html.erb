@@ -1,16 +1,38 @@
-<h2>Forgot your password?</h2>
+<% provide :title, set_title("パスワード再設定")  %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<div id="forget-password"  class="container">
+  <!--パンくずリスト-->
+  <ol class="breadcrumb">
+   <li class="breadcrumb-item"><%= link_to 'HOME', root_path %></li>
+   <li class="breadcrumb-item"><%= link_to 'ログイン', new_user_session_path %></li>
+   <li class="breadcrumb-item active">新規登録</li>
+  </ol>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row text-center">
+    <main class="col-md-8 mx-auto">
+      <div class="p-4">
+
+      <h2>パスワードを忘れましたか？</h2>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "新しいパスワードを送る", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <%= render "users/shared/links" %>
+
+      </div>
+    </main>
+
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+</div>
 
-<%= render "users/shared/links" %>

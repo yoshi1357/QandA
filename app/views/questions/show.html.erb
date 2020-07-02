@@ -41,7 +41,7 @@
           <% if @question.answers.any? %>
             <% @question.answers.each do |answer| %>
               <dl>
-                <dt><h4><%= answer.content %></h4></dt>
+                <dt id="answer-<%= answer.id %>"><h4><%= answer.content %></h4></dt>
 
                 <profile class="d-flex align-items-center flex-row-reverse">
                   <thumbnail>

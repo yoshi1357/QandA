@@ -1,30 +1,35 @@
-<h1>Users/show</h1>
+<% provide :title, set_title("#{@user.name}さんのプロフィール")  %>
 
-<div id="show-users" class="container">
+<div id="show-user" class="container text-center">
   <div class="row">
-    <main class="col-md-8">
+    <main class="col-md-8 mx-auto">
       <div class="p-4">
 
         <profile class="d-flex align-items-start">
-          <thumbnail>
+          <thumbnail class="text-left">
             <% if @user.image? %>
               <%= @user.image.url %>
             <% else %>
               <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4' %>
             <% end %>
+            <% if params[:id].to_i == current_user.id %>
+              [<%= link_to '編集', edit_user_registration_path %>][<%= link_to '削除', user_registration_path, method: :delete, data: {confirm: 'Are you sure?'} %>]
+            <% end %>
           </thumbnail>
-          <content>
+          <content class="mx-auto">
             <p>名前: <%= @user.name %></p>
             <p>メールアドレス: <%= @user.email %></p>
 
             <hr>
 
-            <qblock>
+            <qblock class="text-center">
               <ul class="list-unstyled">
                 <% if @user_questions.any? %>
                   <% @user_questions.each do |user_question| %>
-                    <li><%= user_question.title %></li>
-                    <li><%= user_question.content %></li>
+                    <dl>
+                      <dt><%= link_to user_question.title, question_path(user_question) %></dt>
+                      <dd class="d-none"><%= user_question.content %></dd>
+                    </dl>
                   <% end %>
                 <% else %>
                   質問してみよう
@@ -34,11 +39,14 @@
 
             <hr>
 
-            <ablock class="list-unstyled">
-              <ul>
+            <ablock class="text-center">
+              <ul class="list-unstyled">
                 <% if @user_answers.any? %>
                   <% @user_answers.each do |user_answer| %>
-                    <li><%= user_answer.content %></li>
+                    <dl>
+                      <dt><%= link_to user_answer.content, question_path(user_answer.question, anchor: "answer-#{user_answer.id}") %></dt>
+                      <dd class="d-none"><%= user_answer.question.title %></dd>
+                    </dl>
                   <% end %>
                 <% else %>
                   回答してみよう

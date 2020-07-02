@@ -17,6 +17,12 @@ body{
     margin: 50px auto;
 }
 
+div.field {
+    // フォームの余白を
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 h1 {
     font-size: 36px;/* IE8以下とAndroid4.3以下用フォールバック */
     font-size: calc(2.4rem + ((1vw - 0.64rem) * 2.1429));/* 24px~36pxで可変*/
@@ -45,9 +51,9 @@ h2 {
     h2 {
         font-size: 2rem;/* 20px*/
     }
-}
-// レスポンシブなフォントサイズの指定ここまで
 
+}
+// 共通ここまで
 html{
 
   $aside-color: white;

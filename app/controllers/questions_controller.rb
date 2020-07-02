@@ -12,8 +12,6 @@ class QuestionsController < ApplicationController
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
     @search_count = Question.search(params[:word]).count
-    # @users = User.all
-
   end
 
   def show

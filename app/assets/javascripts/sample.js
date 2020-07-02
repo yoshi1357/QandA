@@ -13,8 +13,8 @@ document.addEventListener("turbolinks:load", function() {
         }
       });
 
-      // a[href="#~"]（ページ内リンク）をスムーズにスクロール
-      $('a[href^="#"]').click(function() {
+      // a[href="#~"]（ページ内リンク）をスムーズにスクロール(サイドバーのタブは除く)
+      $('a[href^="#"]').not('a[href^="#bar"]').click(function() {
           let target = $($(this).attr('href')).offset().top;
           $("html,body").animate({scrollTop: target}, 500);
 
@@ -27,10 +27,10 @@ document.addEventListener("turbolinks:load", function() {
       const TIME = 500;
 
       // マウスオーバーで質問内容を表示
-      $("#index main dt").hover(function(){
-        $(this).next().stop().fadeIn(TIME);
+      $("#index main dt,#show-user main dt").hover(function(){
+        $(this).next().removeClass('d-none');
       },function(){
-        $(this).next().stop().fadeOut(TIME);
+        $(this).next().addClass('d-none');
       });
 
     }
