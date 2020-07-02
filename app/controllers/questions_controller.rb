@@ -12,12 +12,14 @@ class QuestionsController < ApplicationController
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
     @search_count = Question.search(params[:word]).count
-    @users = User.all
+    # @users = User.all
 
   end
 
   def show
     @answer = Answer.new
+    gon.answers_user_id = @question.answers.pluck(:user_id)
+    gon.question_user_id = @question.user_id
   end
 
   def new

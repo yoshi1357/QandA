@@ -4,6 +4,8 @@
     <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <!--gemのgonを使うための記述-->
+    <%= include_gon %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,15 +13,16 @@
 
   <body>
     <!--ヘッダー-->
-    <header class="py-3">
-      <div class="container text-center">
+    <header id="header" class="pt-3 bg-white">
+      <div class="text-left py-3 container">
         <%= link_to root_path, target: "_blank" do %>
-          <%= image_tag 'QA_logo.jpg' %>
+          <%= image_tag 'myQ&Alogo.jpg', size:'150x150' %>
         <% end %>
       </div>
 
       <!--ナビバー-->
-      <nav class="navbar navbar-dark navbar-expand-sm bg-dark justify-content-center">
+      <nav id="nav" class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+
         <%= form_with url: root_path, method: :get, local: true do |f| %>
           <%= f.text_field :word %>
           <%= f.submit "質問を検索", class: "q-search" %>
@@ -31,10 +34,12 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><%= link_to '投稿された質問一覧', root_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '質問を投稿する！', new_question_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしてよろしいですか？", cancel: 'Cansel', commit: 'OK'}, title: 'ログアウト確認画面', class: "nav-link" %></li>
+            <% unless user_signed_in? %>
+              <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
+            <% end %>
             <% if user_signed_in? %>
+              <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしてよろしいですか？", cancel: 'Cansel', commit: 'OK'}, title: 'ログアウト確認画面', class: "nav-link" %></li>
               <!--マイページへのリンク-->
               <li class="nav-item"><%= link_to current_user.email, "#", class: "nav-link" %></li>
             <% end %>
@@ -45,22 +50,23 @@
     <!--ヘッダー終わり-->
 
 
-    <!--フラッシュメッセージ-->
-    <div class="container">
-      <% if flash[:notice] %>
-        <p class="alert alert-success"><%= flash[:notice] %></p>
-      <% end %>
 
-      <% if flash[:alert] %>
-        <p class="alert alert-danger"><%= flash[:alert] %></p>
-      <% end %>
-    </div>
+
 
     <!--ここに各ページのviewが入る-->
-    <%= yield %>
+    <div class="bg-light py-3">
+
+      <%= render partial: 'layouts/flash' %>
+
+      <%= yield %>
+
+      <div class="container text-light">
+        <%= link_to '>ページTOPへ', "#header" %>
+      </div>
+    </div>
 
     <!--フッダー-->
-    <footer class="py-4 mt-4 bg-dark text-light">
+    <footer class="py-4 bg-dark text-light">
       <div class="container text-center">
         <ul class="nav justify-content-center">
           <li class=nav-item>

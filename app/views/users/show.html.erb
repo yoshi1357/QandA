@@ -1,39 +1,55 @@
 <h1>Users/show</h1>
 
-<profile class="d-flex align-items-center">
-  <thumbnail>
-    <% if @user.image? %>
-      <%= @user.image.url %>
-    <% else %>
-      <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4' %>
-    <% end %>
-  </thumbnail>
-  <content>
-    <p>名前: <%= @user.name %></p>
-    <qblock>
-      <ul>
-        <% if @user_questions.any? %>
-          <% @user_questions.each do |user_question| %>
-            <li><%= user_question.title %></li>
-            <li><%= user_question.content %></li>
-          <% end %>
-        <% else %>
-          質問してみよう
-        <% end %>
-      </ul>
+<div id="show-users" class="container">
+  <div class="row">
+    <main class="col-md-8">
+      <div class="p-4">
 
-    </qblock>
-    <ablock>
-      <ul>
-        <% if @user_answers.any? %>
-          <% @user_answers.each do |user_answer| %>
-            <li><%= user_answer.content %></li>
-          <% end %>
-        <% else %>
-          回答してみよう
-        <% end %>
-      </ul>
+        <profile class="d-flex align-items-start">
+          <thumbnail>
+            <% if @user.image? %>
+              <%= @user.image.url %>
+            <% else %>
+              <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4' %>
+            <% end %>
+          </thumbnail>
+          <content>
+            <p>名前: <%= @user.name %></p>
+            <p>メールアドレス: <%= @user.email %></p>
 
-    </ablock>
-  </content>
-</profile>
+            <hr>
+
+            <qblock>
+              <ul class="list-unstyled">
+                <% if @user_questions.any? %>
+                  <% @user_questions.each do |user_question| %>
+                    <li><%= user_question.title %></li>
+                    <li><%= user_question.content %></li>
+                  <% end %>
+                <% else %>
+                  質問してみよう
+                <% end %>
+              </ul>
+            </qblock>
+
+            <hr>
+
+            <ablock class="list-unstyled">
+              <ul>
+                <% if @user_answers.any? %>
+                  <% @user_answers.each do |user_answer| %>
+                    <li><%= user_answer.content %></li>
+                  <% end %>
+                <% else %>
+                  回答してみよう
+                <% end %>
+              </ul>
+
+            </ablock>
+          </content>
+        </profile>
+
+      </div>
+    </main>
+  </div>
+</div>

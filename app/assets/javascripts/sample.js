@@ -2,10 +2,24 @@ document.addEventListener("turbolinks:load", function() {
   $(function() {
 
     {// 共通
-      $("#hamb").click(function(){
-        $("body nav div li").toggleClass('sm');
+      // navbarを上部に固定する
+      let navPos = $("#nav").offset().top;
+
+      $(window).scroll(function(){
+        if ($(window).scrollTop() > navPos) {
+          $("#nav").css("position", "fixed");
+        } else {
+          $("#nav").css("position", "static");
+        }
       });
 
+      // a[href="#~"]（ページ内リンク）をスムーズにスクロール
+      $('a[href^="#"]').click(function() {
+          let target = $($(this).attr('href')).offset().top;
+          $("html,body").animate({scrollTop: target}, 500);
+
+          return false;
+      });
 
     }
 
@@ -18,35 +32,6 @@ document.addEventListener("turbolinks:load", function() {
       },function(){
         $(this).next().stop().fadeOut(TIME);
       });
-
-      // $(".q-search").click(function() {
-      //     let input = $("#word").val();
-
-      //     $.ajax({
-      //       type:'GET', // リクエストのタイプはGETです
-      //       url: '/', // URLは"/meals"を指定します
-      //       data: {word: input}, // コントローラへフォームの値を送信します
-      //       dataType: 'json' // データの型はjsonで指定します
-      //     })
-      //     .done(function(data){
-      //       //h2を書き換える
-      //       $("main h2").html(`検索結果は${data.length}件です`)
-      //       // 前の検索結果が残っていれば削除
-      //       if ($("#wrapper-result > article").length){
-      //         $("#wrapper-result").empty()
-      //       }
-      //       // articleを挿入して、articleの中にliで並べていく
-
-      //       data.forEach(function(search_q,i){
-      //         $("#wrapper-result").append('<article class="col-md-6"></article>');
-      //         //受け取ったidを使ってリンクを生成
-      //         $(`#wrapper-result > article:nth-child(${i + 1})`).append(`<dl><hr><dt><a href="/questions/${search_q.id}">${search_q.title}</a></dt><hr></dl>`);
-      //       });
-      //     })
-      //     .fail(function(){
-      //       alert('通信に失敗しました');
-      //     });
-      // });
 
     }
 
@@ -62,8 +47,24 @@ document.addEventListener("turbolinks:load", function() {
         }
         console.log($(this).html());
       });
-    }
 
+      // 解答者が質問者が同じなら、プロフィールを左へ
+      let answers_user_id = gon.answers_user_id;
+      let question_user_id = gon.question_user_id;
+
+
+      if (answers_user_id.length !== 0){
+        answers_user_id.forEach (function (answer_user_id, i){
+          if (answer_user_id === question_user_id) {
+            console.log( $("#show profile").eq(i));
+
+            $("#show profile.flex-row-reverse").eq(i).children('thumbnail').children('img').addClass("mr-4");
+            $("#show profile.flex-row-reverse").eq(i).children('thumbnail').children('img').removeClass("ml-4");
+            $("#show profile.flex-row-reverse").eq(i).removeClass("flex-row-reverse");
+          }
+        });
+      }
+    }
   });
 });
 
