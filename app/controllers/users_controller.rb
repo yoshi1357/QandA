@@ -11,12 +11,5 @@ class UsersController < ApplicationController
     @user_answers = @user.answers
   end
 
-  def edit
-    @user = User.find(current_user.id)
-  end
-
-
-  private
-
 
 end

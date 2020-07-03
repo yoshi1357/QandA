@@ -24,7 +24,6 @@ document.addEventListener("turbolinks:load", function() {
     }
 
     {//index
-      const TIME = 500;
 
       // マウスオーバーで質問内容を表示
       $("#index main dt,#show-user main dt").hover(function(){

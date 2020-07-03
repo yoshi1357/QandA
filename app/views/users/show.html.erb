@@ -8,7 +8,7 @@
         <profile class="d-flex align-items-start">
           <thumbnail class="text-left">
             <% if @user.image? %>
-              <%= @user.image.url %>
+              <%= image_tag @user.image.url, size: '100x150', class: 'rounded d-block mr-4' %>
             <% else %>
               <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4' %>
             <% end %>

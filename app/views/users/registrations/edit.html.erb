@@ -18,8 +18,35 @@
         <%= render "users/shared/error_messages", resource: resource %>
 
         <div class="field">
+          <thumbnail>
+            <% if current_user.image? %>
+              <%= image_tag current_user.image.url, size: '100x150', class: 'rounded'%>
+            <% else %>
+              <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded' %>
+            <% end %>
+          </thumbnail><br>
+          <label for="user_image">新しいアイコン画像を選択</label><br>
+          <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %>
+        </div>
+        <div class="field">
+          <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+          <% if resource.persisted? && resource.image? %>
+            <label>
+              <%= f.check_box :remove_image %>
+              画像を削除
+            </label>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <label for="user_name">名前</label> <br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autocomplete: "email" %>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

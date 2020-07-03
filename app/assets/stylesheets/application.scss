@@ -15,6 +15,7 @@ body{
   //ボタンを大きく調整
     font-size: 1.2em;
     margin: 50px auto;
+    width: 100%;
 }
 
 div.field {
@@ -116,28 +117,6 @@ html{
 
 
         }
-
-
-        // ハンバーガーを押したら付くクラス
-        // ul .sm{
-        //   border-left: 0px none;
-        //   text-align: right;
-        //   border-bottom: 1px solid white;
-
-        //   &:first-child{
-        //     border-top: 1px solid white;
-        //     border-bottom: 1px solid white;
-        //     margin-top: 5px;
-        //   }
-
-        //   &:last-child{
-        //     border-left: 0px none;
-        //     border-right: 0px none;
-
-        //   }
-
-        // }
-
 
 
       }

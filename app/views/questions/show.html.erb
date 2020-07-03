@@ -1,4 +1,4 @@
-<% provide :title, set_title("質問詳細")  %>
+<% provide :title, set_title("質問詳細") %>
 <div id="show" class="container">
 
   <!--パンくずリスト-->
@@ -20,7 +20,7 @@
             <profile class="d-flex align-items-center">
               <thumbnail>
                 <% if @question.user.image? %>
-                  <%= @question.user.image.url %>
+                  <%= image_tag @question.user.image.url, size: '100x150', class: 'rounded d-block mr-4' %>
                 <% else %>
                   <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4' %>
                 <% end %>
