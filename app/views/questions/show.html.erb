@@ -12,11 +12,16 @@
       <div class="p-4">
         <article>
           <dl>
-            <dt><h4><%= @question.title %></h4></dt>
+            <dt><%= @question.title %></dt>
             <dd class="content my-4"><%= @question.content %></dd>
             <% if user_signed_in? && current_user.id == @question.user_id  %>
               <dd>[ <%= link_to '編集', edit_user_question_path(current_user, @question) %> ] [ <%= link_to '消去', user_question_path(current_user ,@question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
             <% end %>
+            <!--いいね機能部分-->
+            <dd id="like-question-<%= @question.id %>">
+              <%= render partial: "layouts/like", locals: { question: @question } %>
+            </dd>
+
             <profile class="d-flex align-items-center">
               <thumbnail>
                 <% if @question.user.image? %>

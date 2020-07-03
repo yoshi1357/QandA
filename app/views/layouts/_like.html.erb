@@ -1,0 +1,10 @@
+<% if LikeQuestion.find_by(user_id: current_user.id, question_id: question.id) %>
+  <%= link_to("/questions/#{question.id}/like_questions", method: :delete, remote: true) do %>
+    <i class="fa fa-star unlike-btn"></i>
+  <% end %>
+<% else %>
+  <%= link_to("/questions/#{question.id}/like_questions", method: :post, remote: true) do %>
+    <i class="fa fa-star-o like-btn"></i>
+  <% end %>
+<% end %>
+<%= question.liked_users.length %>

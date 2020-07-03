@@ -1,6 +1,8 @@
 class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   belongs_to :user
+  has_many :like_question
+  has_many :liked_users, through: :like_question, source: :user
 
   validates :title, presence: true
   validates :content, presence: true

@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers, only: [:create]
   end
+
+  post '/questions/:id/like_questions' => "like_questions#create"
+  delete '/questions/:id/like_questions' => "like_questions#destroy"
+
   #   # 個人での利用のもの
   #   resources :questions, only: [:edit, :update, :destroy]
   #   resources :answers, only:  [:edit, :update, :destroy]
