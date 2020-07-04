@@ -17,43 +17,119 @@
             <% end %>
           </thumbnail>
           <content class="mx-auto">
+            <h2>プロフィール</h2>
+
+            <hr>
+
             <p>名前: <%= @user.name %></p>
             <p>メールアドレス: <%= @user.email %></p>
 
             <hr>
 
             <qblock class="text-center">
-              <ul class="list-unstyled">
+              <h2>あなたの過去の質問</h2>
+
+
+
                 <% if @user_questions.any? %>
-                  <% @user_questions.each do |user_question| %>
-                    <dl>
-                      <dt><%= link_to user_question.title, question_path(user_question) %></dt>
-                      <dd class="d-none"><%= user_question.content %></dd>
-                    </dl>
+                  <table class="table">
+                    <tr><th>質問のタイトル</th><th>投稿日時</th><th>編集日時</th></tr>
+
+                    <% @user_questions.each do |user_question| %>
+                    <tr>
+                      <td>
+                        <dl>
+                          <dt><%= link_to user_question.title.truncate(20), question_path(user_question) %></dt>
+                          <dd class="d-none"><%= user_question.content.truncate(20) %></dd>
+                        </dl>
+                      </td>
+                      <td>
+                        <%= simple_time(user_question.created_at) %>
+                      </td>
+                      <td>
+                        <% if user_question.created_at == user_question.updated_at %>
+                          -
+                        <% else %>
+                          <%= simple_time(user_question.updated_at) %>
+                        <% end %>
+                      </td>
+                    </tr>
                   <% end %>
+                  </table>
+
                 <% else %>
                   質問してみよう
                 <% end %>
-              </ul>
+
             </qblock>
 
             <hr>
 
             <ablock class="text-center">
-              <ul class="list-unstyled">
+                <h2>あなたの過去の回答</h2>
                 <% if @user_answers.any? %>
-                  <% @user_answers.each do |user_answer| %>
-                    <dl>
-                      <dt><%= link_to user_answer.content, question_path(user_answer.question, anchor: "answer-#{user_answer.id}") %></dt>
-                      <dd class="d-none"><%= user_answer.question.title %></dd>
-                    </dl>
-                  <% end %>
+                  <table class="table">
+                    <tr><th>回答</th><th>投稿日時</th><th>編集日時</th></tr>
+                    <% @user_answers.each do |user_answer| %>
+                      <tr>
+                        <td>
+                          <dl>
+                            <dt><%= link_to user_answer.content.truncate(20), question_path(user_answer.question, anchor: "answer-#{user_answer.id}") %></dt>
+                          </dl>
+                        </td>
+                        <td>
+                          <%= simple_time(user_answer.created_at) %>
+                        </td>
+                        <td>
+                          <% if user_answer.created_at == user_answer.updated_at %>
+                            -
+                          <% else %>
+                            <%= simple_time(user_answer.updated_at) %>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
                 <% else %>
                   回答してみよう
                 <% end %>
-              </ul>
 
             </ablock>
+
+            <hr>
+
+            <fblock>
+              <h2>あなたがいいねの質問</h2>
+              <% if @user_like_questions.any? %>
+                <table class="table">
+                  <tr><th>質問のタイトル</th><th>投稿日時</th><th>編集日時</th></tr>
+                  <% @user_like_questions.each do |user_like_question| %>
+                    <tr>
+                      <td>
+                        <dl>
+                          <dt><%= link_to user_like_question.title.truncate(20), question_path(user_like_question) %></dt>
+                          <dd class="d-none"><%= user_like_question.content.truncate(20) %></dd>
+                        </dl>
+                      </td>
+                      <td>
+                        <%= simple_time(user_like_question.created_at) %>
+                      </td>
+                      <td>
+                        <% if user_like_question.created_at == user_like_question.updated_at %>
+                          -
+                        <% else %>
+                          <%= simple_time(user_like_question.updated_at) %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% else %>
+                いいねしてみよう
+              <% end %>
+
+            </fblock>
+
           </content>
         </profile>
 
