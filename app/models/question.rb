@@ -7,7 +7,7 @@ class Question < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  scope :search, -> (word){ word ? where(['title LIKE ?', "%#{word}%"]) : all }
+  # scope :search, -> (word){ word ? where(['title LIKE ?', "%#{word}%"]) : all }
 
   scope :latest, -> (n){ order(created_at: "DESC").limit(n) if count > n }
 

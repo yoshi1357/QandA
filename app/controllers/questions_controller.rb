@@ -10,8 +10,9 @@ class QuestionsController < ApplicationController
 
   def index
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
-    @questions = Question.search(params[:word]).page(params[:page]).per(PER).order(created_at: "DESC")
-    @search_count = Question.search(params[:word]).count
+    @q = Question.ransack(params[:q])
+    @questions = @q.result(distinct: true).page(params[:page]).per(PER)
+    # @search_count = Question.search(params[:word]).count
   end
 
   def show

@@ -23,10 +23,13 @@
       <!--ナビバー-->
       <nav id="nav" class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
 
-        <%= form_with url: root_path, method: :get, local: true do |f| %>
-          <%= f.text_field :word %>
-          <%= f.submit "質問を検索", class: "q-search" %>
+        <!--タイトルとコンテントでor検索-->
+        <%= search_form_for @q do |f| %>
+          <%= f.search_field :title_or_content_cont %>
+          <%= f.submit "質問を検索" %>
         <% end %>
+
+
 
         <!--data-target="#navbar-items"とid="navbar-items"でハンバーガーを押すと、表示される部分を関連付けてる-->
         <button class="navbar-toggler ml-auto" id="hamb" data-toggle="collapse" data-target="#navbar-items"><span class="navbar-toggler-icon"></span></button>

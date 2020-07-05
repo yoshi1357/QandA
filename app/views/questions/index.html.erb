@@ -10,11 +10,11 @@
     <main class="col-md-8">
       <div class="p-4">
         <h2 class="text-center py-4">投稿された質問</h2>
-        <% unless Question.count == @search_count %>
-          <p><%= "「#{params[:word]}」の検索結果は#{@search_count}件" %></p>
+        <% unless Question.count == @questions.total_count %>
+          <p><%=  "「#{params[:q][:title_cont]}」の検索結果は#{@questions.total_count}件" %></p>
         <% end %>
         <div class="row" id="wrapper-result">
-          <% @questions.each do |question| %>
+          <% @questions.order(created_at: "DESC").each do |question| %>
             <article class="col-md-6">
               <dl>
                 <hr>
