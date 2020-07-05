@@ -176,6 +176,12 @@ html{
 // index
 #index {
 
+  block > a {
+    font-size: 0.7em;
+    margin: 10px 5px;
+    width: 15%;
+  }
+
   #search-result{
     display: none;
   }

@@ -32,6 +32,12 @@ document.addEventListener("turbolinks:load", function() {
         $(this).next().addClass('d-none');
       });
 
+      $("#index block > a").each(function(){
+        if (!$(this).hasClass("btn btn-primary")) {
+          $(this).addClass("btn btn-primary");
+        }
+      });
+
     }
 
 

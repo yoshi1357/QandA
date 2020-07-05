@@ -9,7 +9,4 @@ module ApplicationHelper
     japan_time.strftime("%Y-%m-%d %H:%M")
   end
 
-  def searched_questions?
-    @questions.count == Question.all.count
-  end
 end

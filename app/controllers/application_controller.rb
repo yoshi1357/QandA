@@ -17,13 +17,13 @@ class ApplicationController < ActionController::Base
     @latest_questions = Question.latest(5)
   end
 
-  def set_nores_questions
-    @nores_questions = Question.find(Answer.nores.keys)
-  end
+  # def set_nores_questions
+  #   @nores_questions = Question.find(Answer.nores.keys)
+  # end
 
-  def set_nores
-    @nores = Answer.nores.values
-  end
+  # def set_nores
+  #   @nores = Answer.nores.values
+  # end
 
   def correct_user?
     unless params[:user_id].to_i == current_user.id

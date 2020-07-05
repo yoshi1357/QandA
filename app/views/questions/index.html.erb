@@ -10,9 +10,20 @@
     <main class="col-md-8">
       <div class="p-4">
         <h2 class="text-center py-4">投稿された質問</h2>
-        <% unless Question.count == @questions.total_count %>
-          <p><%=  "「#{params[:q][:title_cont]}」の検索結果は#{@questions.total_count}件" %></p>
+
+        <block class="d-flex justify-content-start text-center">
+
+          <%= sort_link @q, :created_at, "投稿日時" %>
+          <%= link_to '回答が多い', root_path(target: 'answers'), class: "btn btn-primary" %>
+          <%= link_to '回答がまだ無い', root_path(target: 'no-answers'), class: "btn btn-primary" %>
+          <%= link_to 'いいねが多い順', root_path(target: 'favorites'), class: "btn btn-primary" %>
+          <%= link_to 'いいねがまだ無い', root_path(target: 'no-favorites'), class: "btn btn-primary" %>
+        </block>
+
+        <% if params[:q] %>
+          <p><%= "「#{params[:q][:title_or_content_cont]}」の検索結果は#{@questions.total_count}件" %></p>
         <% end %>
+
         <div class="row" id="wrapper-result">
           <% @questions.order(created_at: "DESC").each do |question| %>
             <article class="col-md-6">
@@ -36,7 +47,7 @@
       <block class="paginate"><%= paginate @questions %></block>
     </main>
 
-    <%= render partial: 'layouts/aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
+     #render partial: 'layouts/aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions}
 
   </div>
 

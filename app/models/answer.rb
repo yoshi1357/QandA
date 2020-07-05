@@ -4,6 +4,6 @@ class Answer < ApplicationRecord
 
   validates :content, presence: true
 
-  scope :nores, -> { joins(:question).group("question_id").order('count_question_id DESC').count("question_id") }
+  # scope :nores, -> { left_joins(:question).group("question_id").order('count_question_id DESC').count("question_id") }
 
 end

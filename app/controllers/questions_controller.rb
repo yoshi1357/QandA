@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only:[:show, :edit, :update, :destroy]
-  before_action :set_latest_questions, :set_nores_questions, :set_nores
+  before_action :set_latest_questions
 
   before_action :authenticate_user!, except: [:index,]
   before_action :correct_user?, only: [:edit,:update,:destroy,]
@@ -11,12 +11,12 @@ class QuestionsController < ApplicationController
   def index
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @q = Question.ransack(params[:q])
-    @questions = @q.result(distinct: true).page(params[:page]).per(PER)
-    # @search_count = Question.search(params[:word]).count
+    @questions = @q.result(distinct: true).sort_question(params[:target]).page(params[:page]).per(PER)
   end
 
   def show
     @answer = Answer.new
+    @q = Question.ransack(params[:q])
     gon.answers_user_id = @question.answers.pluck(:user_id)
     gon.question_user_id = @question.user_id
   end
@@ -58,5 +58,7 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:title, :content, :user_id)
     end
+
+
 
 end
