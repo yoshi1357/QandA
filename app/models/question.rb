@@ -14,6 +14,7 @@ class Question < ApplicationRecord
   scope :nores, -> { left_joins(:answers).select('questions.*, count(answers.question_id) as count_question_id').group("answers.question_id").order('count_question_id DESC')}
   scope :nofav, -> { left_joins(:like_question).select('questions.*, count(like_questions.question_id) as count_question_id').group("like_questions.question_id").order('count_question_id DESC') }
 
+  # 並べ替え用
   def self.sort_question(target)
     case target
 

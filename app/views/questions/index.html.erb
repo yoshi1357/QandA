@@ -30,7 +30,7 @@
               <dl>
                 <hr>
                 <dt><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
-                <dd class="d-none text-left"><%= question.content %></dd>
+                <dd class="d-none text-left"><%= Rinku.auto_link(simple_format(question.content)) %></dd>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
                 <% if user_signed_in? && current_user.id == question.user_id  %>
                   <dd>[ <%= link_to '編集', edit_user_question_path(current_user, question) %> ] [ <%= link_to '消去', user_question_path(current_user, question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>

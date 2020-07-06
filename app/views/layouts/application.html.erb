@@ -35,12 +35,15 @@
         <button class="navbar-toggler ml-auto" id="hamb" data-toggle="collapse" data-target="#navbar-items"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbar-items">
           <ul class="navbar-nav ml-auto">
+            <!--共通の表示-->
             <li class="nav-item"><%= link_to '投稿された質問一覧', root_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '質問を投稿する！', new_question_path, class: "nav-link" %></li>
+            <!--ログインしていないユーザーへの表示-->
             <% unless user_signed_in? %>
               <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: "nav-link" %></li>
               <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
             <% end %>
+            <!--ログイン済みのユーザーへの表示-->
             <% if user_signed_in? %>
               <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: "ログアウトしてよろしいですか？", cancel: 'Cansel', commit: 'OK'}, title: 'ログアウト確認画面', class: "nav-link" %></li>
               <!--マイページへのリンク-->
@@ -58,7 +61,7 @@
 
     <!--ここに各ページのviewが入る-->
     <div class="bg-light py-3">
-
+      <!--フラッシュメッセージの表示-->
       <%= render partial: 'layouts/flash' %>
 
       <%= yield %>
