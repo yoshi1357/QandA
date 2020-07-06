@@ -32,6 +32,7 @@ document.addEventListener("turbolinks:load", function() {
         $(this).next().addClass('d-none');
       });
 
+      // sort_linkへのボタン化
       $("#index block > a").each(function(){
         if (!$(this).hasClass("btn btn-primary")) {
           $(this).addClass("btn btn-primary");

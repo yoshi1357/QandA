@@ -7,7 +7,7 @@
   </ol>
 
   <div class="row">
-    <main class="col-md-8">
+    <main class="col-md-8 mx-auto">
       <div class="p-4">
         <h2 class="text-center py-4">投稿された質問</h2>
 
@@ -30,7 +30,7 @@
               <dl>
                 <hr>
                 <dt><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
-                <dd class="d-none text-left"><%= Rinku.auto_link(simple_format(question.content)) %></dd>
+                <dd class="d-none text-left"><%= question.content %></dd>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
                 <% if user_signed_in? && current_user.id == question.user_id  %>
                   <dd>[ <%= link_to '編集', edit_user_question_path(current_user, question) %> ] [ <%= link_to '消去', user_question_path(current_user, question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
@@ -47,7 +47,6 @@
       <block class="paginate"><%= paginate @questions %></block>
     </main>
 
-     #render partial: 'layouts/aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions}
 
   </div>
 

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_latest_questions, :set_nores_questions, :set_nores
 
   def index
     @users = User.all

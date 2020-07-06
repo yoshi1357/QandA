@@ -9,7 +9,7 @@
   </ol>
 
   <div class="row">
-    <main class="col-md-8">
+    <main class="col-md-8 mx-auto">
       <div class="p-4">
         <h2 class="my-4 text-center">新規質問投稿</h2>
         <%= render partial: 'question-form', locals: {question: @question, models: @question} %>
@@ -17,7 +17,6 @@
 
     </main>
 
-    <%= render partial: 'layouts/aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
 
   </div>
 </div>

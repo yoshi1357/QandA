@@ -8,12 +8,12 @@
   </ol>
 
   <div class="row">
-    <main class="col-md-8">
+    <main class="col-md-8 mx-auto">
       <div class="p-4">
         <article>
           <dl>
             <dt><%= @question.title %></dt>
-            <dd class="content my-4"><%= @question.content %></dd>
+            <dd class="content my-4"><%= raw Rinku.auto_link(simple_format(h(@question.content))) %></dd>
             <% if user_signed_in? && current_user.id == @question.user_id  %>
               <dd>[ <%= link_to '編集', edit_user_question_path(current_user, @question) %> ] [ <%= link_to '消去', user_question_path(current_user ,@question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
             <% end %>
@@ -46,7 +46,7 @@
           <% if @question.answers.any? %>
             <% @question.answers.each do |answer| %>
               <dl>
-                <dt id="answer-<%= answer.id %>"><h4><%= answer.content %></h4></dt>
+                <dt id="answer-<%= answer.id %>"><h4><%= raw Rinku.auto_link(simple_format(h(answer.content))) %></h4></dt>
 
                 <profile class="d-flex align-items-center flex-row-reverse">
                   <thumbnail>
@@ -89,7 +89,6 @@
 
     </main>
 
-    <%= render partial: 'layouts/aside', locals: {nores_questions: @nores_questions, nores: @nores, latest_questions: @latest_questions} %>
 
   </div>
 </div>
