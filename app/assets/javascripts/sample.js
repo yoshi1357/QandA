@@ -59,22 +59,37 @@ document.addEventListener("turbolinks:load", function() {
       });
 
       // 解答者が質問者が同じなら、プロフィールを左へ
-      let answers_user_id = gon.answers_user_id;
-      let question_user_id = gon.question_user_id;
+      try{
+        let answers_user_id = gon.answers_user_id;
+        let question_user_id = gon.question_user_id;
 
+        if (answers_user_id.length !== 0){
+          answers_user_id.forEach (function (answer_user_id, i){
+            if (answer_user_id === question_user_id) {
+              console.log( $("#show profile").eq(i));
 
-      if (answers_user_id.length !== 0){
-        answers_user_id.forEach (function (answer_user_id, i){
-          if (answer_user_id === question_user_id) {
-            console.log( $("#show profile").eq(i));
-
-            $("#show profile.flex-row-reverse").eq(i).children('thumbnail').children('img').addClass("mr-4");
-            $("#show profile.flex-row-reverse").eq(i).children('thumbnail').children('img').removeClass("ml-4");
-            $("#show profile.flex-row-reverse").eq(i).removeClass("flex-row-reverse");
-          }
-        });
+              $("#show profile.flex-row-reverse").eq(i).children('thumbnail').children('img').addClass("mr-4");
+              $("#show profile.flex-row-reverse").eq(i).children('thumbnail').children('img').removeClass("ml-4");
+              $("#show profile.flex-row-reverse").eq(i).removeClass("flex-row-reverse");
+            }
+          });
+        }
+      } catch(e){
+        //エラー（非ログイン）なら何もしない
       }
     }
+
+    { //user-new
+      $("#pw-check").change(function(){
+        if ($(this).prop('checked')){
+          $(".pw-form").attr('type','text');
+        }else{
+          $(".pw-form").attr('type','password');
+        }
+      });
+
+    }
+
   });
 });
 

@@ -21,7 +21,8 @@
           <%= sort_link @q, :impressions_count, "PV数" %>
         </block>
 
-        <% if params[:q] %>
+        <!--params[:q]がnilの時点でfalseが返るため、エラーにならない-->
+        <% if params[:q] && params[:q][:title_or_content_cont]  %>
           <p><%= "「#{params[:q][:title_or_content_cont]}」の検索結果は#{@questions.total_count}件" %></p>
         <% end %>
 

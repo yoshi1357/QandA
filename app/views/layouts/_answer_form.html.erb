@@ -1,4 +1,7 @@
 <%= form_with model: [question,answer],local: true do |f|  %>
+
+  <%= render partial: 'layouts/error_messages', locals: {model: f.object} %>
+
   <%= f.hidden_field :question_id, {value: @question.id} %>
   <%= f.hidden_field :user_id, {value: current_user.id} %>
 

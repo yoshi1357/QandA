@@ -1,9 +1,10 @@
 class Answer < ApplicationRecord
+  # アソーシエーション
   belongs_to :question
   belongs_to :user
 
+  # バリテーション
   validates :content, presence: true
-
-  # scope :nores, -> { left_joins(:question).group("question_id").order('count_question_id DESC').count("question_id") }
+  validates :content, length: {maximum: 1000}
 
 end
