@@ -1,4 +1,7 @@
 <%= form_with model: models, local: true do |f| %>
+
+  <%= render partial: 'error_messages', locals: {model: f.object} %>
+
   <%= f.hidden_field :user_id, {value: current_user.id} %>
 
   <div class="form-group">

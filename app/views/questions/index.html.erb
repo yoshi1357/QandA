@@ -18,6 +18,7 @@
           <%= link_to '回答がまだ無い', root_path(target: 'no-answers'), class: "btn btn-primary" %>
           <%= link_to 'いいねが多い順', root_path(target: 'favorites'), class: "btn btn-primary" %>
           <%= link_to 'いいねがまだ無い', root_path(target: 'no-favorites'), class: "btn btn-primary" %>
+          <%= sort_link @q, :impressions_count, "PV数" %>
         </block>
 
         <% if params[:q] %>
@@ -29,8 +30,7 @@
             <article class="col-md-6">
               <dl>
                 <hr>
-                <dt><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
-                <dd class="d-none text-left"><%= question.content %></dd>
+                <dt class="question-title-abr"><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
                 <% if user_signed_in? && current_user.id == question.user_id  %>
                   <dd>[ <%= link_to '編集', edit_user_question_path(current_user, question) %> ] [ <%= link_to '消去', user_question_path(current_user, question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>

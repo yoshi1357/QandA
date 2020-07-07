@@ -26,11 +26,15 @@ document.addEventListener("turbolinks:load", function() {
     {//index
 
       // マウスオーバーで質問内容を表示
-      $("#index main dt,#show-user main dt").hover(function(){
-        $(this).next().removeClass('d-none');
-      },function(){
-        $(this).next().addClass('d-none');
-      });
+      // $(".question-title").hide();
+
+      // $(".question-title-abr").hover(function(){
+      //   $(this).hide();
+      //   $(this).next().stop().fadeIn(500);
+      // },function(){
+      //   $(this).next().hide();
+      // 　$(this).next().stop().fadeIn(500);
+      // });
 
       // sort_linkへのボタン化
       $("#index block > a").each(function(){

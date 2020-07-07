@@ -41,6 +41,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'sqlite3','~> 1.3.6'
   gem 'faker'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -84,3 +87,4 @@ gem 'gon'
 gem 'font-awesome-rails'
 gem 'ransack'
 gem 'rinku'
+gem 'impressionist', '~>1.6.1'

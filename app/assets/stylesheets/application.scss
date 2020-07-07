@@ -11,17 +11,28 @@ body{
     font-size: 1.6rem;/* 16px*/
     line-height: 2;
 }
+
+//ボタンを大きく調整
 .btn{
-  //ボタンを大きく調整
     font-size: 1.2em;
     margin: 50px auto;
     width: 100%;
 }
 
+// フォームの余白を調整
 div.field {
-    // フォームの余白を
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+// バリテーションエラーメッセージの調整
+ul.alert {
+    color:#262626;
+    background:#FFEBE8;
+    text-align: center;
+    border:2px solid #990000;
+    padding:12px; font-weight:850;
+    list-style-type: none;
 }
 
 h1 {

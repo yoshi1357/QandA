@@ -4,6 +4,8 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index,]
   before_action :correct_user?, only: [:edit,:update,:destroy,]
 
+  # PV数計測を:showへ 同じipアドレスからは重複して数えないように
+  impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
   PER = 10
 
@@ -15,9 +17,13 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = Answer.new
+
     @q = Question.ransack(params[:q])
+
     gon.answers_user_id = @question.answers.pluck(:user_id)
     gon.question_user_id = @question.user_id
+
+    @views_questions = @question.impressions.size #PV数を取得
   end
 
   def new
