@@ -31,7 +31,7 @@
             <article class="col-md-6">
               <dl>
                 <hr>
-                <dt class="question-title-abr"><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
+                <dt class="question-title-abr" id="question-title-abr-<%= question.id %>" data_qid="<%= question.id %>"><%= link_to question.title.truncate(20) ,question_path(question) %></dt>
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
                 <% if user_signed_in? && current_user.id == question.user_id  %>
                   <dd>[ <%= link_to '編集', edit_user_question_path(current_user, question) %> ] [ <%= link_to '消去', user_question_path(current_user, question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>

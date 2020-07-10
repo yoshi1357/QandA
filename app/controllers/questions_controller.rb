@@ -13,6 +13,14 @@ class QuestionsController < ApplicationController
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る
     @q = Question.ransack(params[:q])
     @questions = @q.result(distinct: true).sort_question(params[:target]).page(params[:page]).per(PER)
+
+    #jsファイルにQuestion.allを渡す
+    gon.questions = Question.all
+
+    respond_to do |format|
+      format.html
+      format.js{}
+    end
   end
 
   def show

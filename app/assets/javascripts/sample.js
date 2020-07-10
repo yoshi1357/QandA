@@ -43,6 +43,25 @@ document.addEventListener("turbolinks:load", function() {
         }
       });
 
+      //タイトルの省略をホバーで解除
+      // $(".question-title-abr").hover(function(){
+      //   let q_id = $(this).attr('data_qid')
+      //   let question = gon.questions[q_id - 1]
+
+      //   $.ajax({
+      //   type: "GET",
+      //   url: "/",
+      //   cache: false,
+      //   //必要なステータスを送るremote:trueを忘れずに
+      //   data: { question: question, remote: true }
+      //   });
+
+      // },function(){
+      //   // ホバーアウト時の処理
+      // });
+
+
+
     }
 
 

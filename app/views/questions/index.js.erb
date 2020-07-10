@@ -1,7 +1,1 @@
-document.addEventListener("turbolinks:load", function() {
-  $(function() {
-        $(".question-title-abr").hover(function(){
-          $(this).html("<%= j(link_to question.title, question_path(question)) %>");
-        });
-  });
-});
+$("#question-title-abr-${question.id}").html("<%= j(link_to question.title, question_path(question)) %>");
