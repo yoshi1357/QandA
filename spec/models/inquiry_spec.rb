@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe "InquiryValidation", type: :model do
+# RSpec.describe "InquiryValidation", type: :model do
 
-end
+# end
