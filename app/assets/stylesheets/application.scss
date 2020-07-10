@@ -236,3 +236,14 @@ html{
   }
 
 }
+
+// user-registration
+#user-registration {
+
+  input:required{
+    background: #ffcdd2;
+  }
+  input:focus {
+    background: #DCEDC8;
+  }
+}

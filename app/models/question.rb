@@ -14,7 +14,7 @@ class Question < ApplicationRecord
   validates :content, length: {maximum: 1000}
 
   # 並べ替えのためのscope
-  scope :latest, -> (n){ order(created_at: "DESC").limit(n) if count > n }
+  # scope :latest, -> (n){ order(created_at: "DESC").limit(n) if count > n }
   scope :nores, -> { left_joins(:answers).select('questions.*, count(answers.question_id) as count_question_id').group("answers.question_id").order('count_question_id DESC')}
   scope :nofav, -> { left_joins(:like_question).select('questions.*, count(like_questions.question_id) as count_question_id').group("like_questions.question_id").order('count_question_id DESC') }
 
@@ -33,9 +33,6 @@ class Question < ApplicationRecord
 
     when 'no-favorites' then
       Question.left_joins(:like_question).where("like_questions.question_id": nil)
-
-    when 'preview' then
-
 
     else
       all

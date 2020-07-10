@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "UserValidation", type: :model do
 
-  describe 'is valid weth a name, email, password' do
+  describe 'is valid with a name, email, password' do
     it 'name, email, passwordがあれば有効なこと' do
       user = User.new(
         name: 'John',

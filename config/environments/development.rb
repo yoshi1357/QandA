@@ -61,4 +61,16 @@ Rails.application.configure do
 
   # BetterErrorsを使うための記述
   BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                  587,
+    domain:               'gmail.com',
+    user_name:             ENV['GMAIL'],
+    password:              ENV['GMAIL_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto:  true
+  }
 end

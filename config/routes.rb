@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # devise_for :users
   # get 'questions/index'
   # get 'questions/show'
@@ -6,6 +7,8 @@ Rails.application.routes.draw do
   # get 'questions/edit'
 
   root 'questions#index'
+  get '/inquiries/new' => 'inquiry#new'
+  post '/inquiries' => 'inquiry#create'
   # devise_for :users, :controllers => {
   #   :registrations => 'users/registrations',
   #   :sessions => 'users/sessions',

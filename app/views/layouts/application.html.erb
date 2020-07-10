@@ -34,6 +34,7 @@
         <div class="collapse navbar-collapse" id="navbar-items">
           <ul class="navbar-nav ml-auto">
             <!--共通の表示-->
+            <li class="nav-item"><%= link_to 'お問い合わせ', inquiries_new_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '投稿された質問一覧', root_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to '質問を投稿する！', new_question_path, class: "nav-link" %></li>
             <!--ログインしていないユーザーへの表示-->
