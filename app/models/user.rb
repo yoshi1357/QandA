@@ -1,9 +1,24 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  #deviseの設定
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable
+        # :validatable 自分でバリデーションかけたくてコメントアウト
+
   # アソーシエーション
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :like_question, dependent: :destroy
   has_many :liked_questions, through: :like_question, source: :question
+  has_many :active_relationships, class_name: "Follow", foreign_key: :following_id
+  has_many :following, through: :active_relationships, source: :follower
+  has_many :passive_relationships, class_name: "Follow", foreign_key: :follower_id
+  has_many :followers, through: :passive_relationships, source: :following
+
+  def followed_by?(user)
+    passive_relationships.find_by(following_id: user.id).present?
+  end
 
   # バリデーション
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -15,14 +30,7 @@ class User < ApplicationRecord
   validates :password, { presence: true, format: { with: VALID_PASSWORD_REGEX ,
   message: "半角英小文字、大文字、数字をそれぞれ1種類以上含む8文字以上100文字以下の必要があります" }, confirmation: true }
 
-
-
-
   mount_uploader :image, ImageUploader
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable
-        # :validatable 自分でバリデーションかけたくてコメントアウト
+
 end

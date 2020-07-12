@@ -15,7 +15,7 @@
 
           <div class="form-group">
             <%= f.label :email, '返信先メールアドレス' %>
-            <% user_signed_in? ? email_placeholder = current_user.email : email_placeholder = 'sample@email.com' %>
+            <% user_signed_in? ? email_placeholder = current_user.email : email_placeholder = '例:sample@email.com' %>
             <%= f.text_field :email, type: "email", autocomplete: "email", placeholder: "#{email_placeholder}", class: 'form-control' %>
           </div>
 

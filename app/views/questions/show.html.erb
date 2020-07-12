@@ -25,14 +25,17 @@
             <profile class="d-flex align-items-center">
               <thumbnail>
                 <% if @question.user.image? %>
-                  <%= image_tag @question.user.image.url, size: '100x150', class: 'rounded d-block mr-4' %>
+                  <%= link_to(image_tag(@question.user.image.url, size: '100x150', class: 'rounded d-block mr-4'), user_path(@question.user)) %>
                 <% else %>
-                  <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4' %>
+                  <%= link_to(image_tag('/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4'), user_path(@question.user)) %>
                 <% end %>
               </thumbnail>
               <content>
-                <p>投稿者名: <%= @question.user.name %></p>
+                <p>投稿者名: <%= link_to @question.user.name, user_path(@question.user) %></p>
                 <p>投稿日時: <%= simple_time(@question.created_at) %></p>
+                <p id="follow-<%= @question.id %>">
+                  <%= render partial: "layouts/follow", locals: { question: @question } %>
+                </p>
               </content>
             </profile>
           </dl>
@@ -51,13 +54,13 @@
                 <profile class="d-flex align-items-center flex-row-reverse">
                   <thumbnail>
                     <% if answer.user.image? %>
-                      <%= answer.user.image.url %>
+                      <%= link_to(image_tag(answer.user.image.url, size: '100x150', class: 'rounded d-block ml-4'), user_path(answer.user)) %>
                     <% else %>
-                      <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block ml-4' %>
+                      <%= link_to(image_tag('/default_kodai.jpg', size: '100x150', class: 'rounded d-block ml-4'), user_path(answer.user)) %>
                     <% end %>
                   </thumbnail>
                   <content>
-                    <p>投稿者名: <%= answer.user.name %></p>
+                    <p>投稿者名: <%= link_to answer.user.name, user_path(answer.user) %></p>
                     <p>投稿日時: <%= simple_time(answer.created_at) %></p>
                   </content>
                 </profile>

@@ -1,6 +1,12 @@
 <% provide :title, set_title("#{@user.name}さんのプロフィール")  %>
 
 <div id="show-user" class="container text-center">
+  <!--パンくずリスト-->
+  <ol class="breadcrumb">
+   <li class="breadcrumb-item"><a href="/">HOME</a></li>
+   <li class="breadcrumb-item active">ユーザ詳細</li>
+  </ol>
+
   <div class="row">
     <main class="col-md-8 mx-auto">
       <div class="p-4">
@@ -97,6 +103,46 @@
             </ablock>
 
             <hr>
+
+            <fblock>
+              <h2>あなたがフォローしたユーザー</h2>
+              <% if @user_follows.any? %>
+                <table class="table">
+                  <tr><th>ユーザーネーム</th></tr>
+                  <% @user_follows.each do |user_follow| %>
+                    <tr>
+                      <td>
+                        <dl>
+                          <dt><%= link_to user_follow.name, user_path(user_follow) %></dt>
+                        </dl>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% else %>
+                フォローしてみよう
+              <% end %>
+            </fblock>
+
+            <fblock>
+              <h2>あなたがフォローされたユーザー</h2>
+              <% if @user_followers.any? %>
+                <table class="table">
+                  <tr><th>ユーザーネーム</th></tr>
+                  <% @user_followers.each do |user_follower| %>
+                    <tr>
+                      <td>
+                        <dl>
+                          <dt><%= link_to user_follower.name, user_path(user_follower) %></dt>
+                        </dl>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% else %>
+                まだ誰にもフォローされていません
+              <% end %>
+            </fblock>
 
             <fblock>
               <h2>あなたがいいねした質問</h2>
