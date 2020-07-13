@@ -1,1 +1,1 @@
-$("#question-title-abr-${question.id}").html("<%= j(link_to question.title, question_path(question)) %>");
+$("#question-title-abr-<%= @question.id %>").html("<%= j(link_to @question.title ,question_path(@question)) %>");

@@ -1,6 +1,6 @@
 <% provide :title, set_title("プロフィール編集")  %>
 
-<div id="edit-user"  class="container">
+<div id="user-edit"  class="container">
   <!--パンくずリスト-->
   <ol class="breadcrumb">
    <li class="breadcrumb-item"><%= link_to 'HOME', root_path %></li>
@@ -18,30 +18,23 @@
         <%= render "users/shared/error_messages", resource: resource %>
 
         <div class="field">
-          <thumbnail>
-            <% if current_user.image? %>
-              <%= image_tag current_user.image.url, size: '100x150', class: 'rounded'%>
+          <%= f.label :image, class: "image_label" do %>
+          <div class="prev-contents">
+            <% if current_user.image.present? %>
+              <div class="prev-content">
+                <%= image_tag current_user.image.url, size: '100x150', class: "prev-image rounded d-block" %>
             <% else %>
-              <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded' %>
+                <i class="fa fa-frown-o fa-5x photo-icon"></i>
+              </div>
             <% end %>
-          </thumbnail><br>
-          <label for="user_image">新しいアイコン画像を選択</label><br>
-          <%= f.file_field :image %>
-          <%= f.hidden_field :image_cache %>
-        </div>
-        <div class="field">
-          <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
-          <% if resource.persisted? && resource.image? %>
-            <label>
-              <%= f.check_box :remove_image %>
-              画像を削除
-            </label>
+          </div>
           <% end %>
+          <%= f.file_field :image, class: "image_form__contents__field hidden_file" %>
         </div>
 
         <div class="field">
           <label for="user_name">名前</label> <br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "email" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
         </div>
 
         <div class="field">
