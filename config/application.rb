@@ -18,5 +18,8 @@ module QandA
     config.time_zone = 'Tokyo'
     # deviseとエラーメッセージを日本語化
     config.i18n.default_locale = :ja
+    #よくわからないけどi-18の複数のロケールファイルが読み込まれるようにpathを通してる…らしい
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
   end
 end

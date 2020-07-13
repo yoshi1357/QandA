@@ -7,3 +7,9 @@ ja:
         password_confirmation: 確認用パスワード
         remember_me: 次回から自動的にログイン
         name: 名前
+        image: プロフィール画像
+      question:
+        title: 題名
+        content: 質問
+      answer:
+        content: 回答

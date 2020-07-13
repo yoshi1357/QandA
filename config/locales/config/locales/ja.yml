@@ -6,20 +6,27 @@ ja:
         previous: '前'
         next: '次'
         truncate: '...'
-  activerecord:
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
-    attributes:
-      user:
-        name:
-        email:
-        password:
-        password_confirmation:
-          blank: "空白だ"
+  # activerecord:
+  #   models:
+  #     user: "ユーザー"
+  #     question: "質問"
+  #     answer: "回答"
+  #   attributes:
+  #     question:
+  #       title: "題名"
+  #       content: "質問内容"
+  #     user:
+  #       name: "名前"
+  #       email: "メールアドレス"
+  #       password: "パスワード"
+  #       password_confirmation: "確認用パスワード"
+  #   errors:
+  #     messages:
+  #       record_invalid: 'バリデーションに失敗しました: %{errors}'
+  #       restrict_dependent_destroy:
+  #         has_one: "%{record}が存在しているので削除できません"
+  #         has_many: "%{record}が存在しているので削除できません"
+
   date:
     abbr_day_names:
     - 日

@@ -28,16 +28,4 @@ Rails.application.routes.draw do
   post '/questions/:id/like_questions' => "like_questions#create"
   delete '/questions/:id/like_questions' => "like_questions#destroy"
 
-  #   # 個人での利用のもの
-  #   resources :questions, only: [:edit, :update, :destroy]
-  #   resources :answers, only:  [:edit, :update, :destroy]
-  # end
-
-  # # 誰でも or 会員ならだれでも
-  # resources :questions, only: [:index, :new, :show, :create] do
-  #   resources :answers, only: [:new , :create]
-  # end
-
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
