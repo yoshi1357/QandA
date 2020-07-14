@@ -96,40 +96,8 @@ html{
         z-index: 10;
 
         ul li{
-          list-style-type: none;
-          border-left: 1px solid white;
 
-            &:last-child{
-             border-right: 1px solid white;
-            }
-
-            @media only screen and (max-width:$size-md){
-
-              border-left: 0px none;
-              text-align: right;
-              border-bottom: 1px solid white;
-
-              &:first-child{
-                border-top: 1px solid white;
-                border-bottom: 1px solid white;
-                margin-top: 5px;
-              }
-
-              &:last-child{
-                border-left: 0px none;
-                border-right: 0px none;
-              }
-            }
-
-
-            a.nav-link{
-              color: rgba(255, 255, 255, 1.0)!important;
-              &:hover{
-                opacity: 0.5;
-              }
-            }
-
-
+          padding: 0 5px;
 
         }
 
@@ -231,9 +199,9 @@ html{
     font-size: 1.2em;
   }
 
-  .disable{
-    display: none;
-  }
+  // .disable{
+  //   display: none;
+  // }
 
 }
 

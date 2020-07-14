@@ -5,12 +5,16 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer = Answer.new
 
-    if @answer.update(answer_params)
-      redirect_to question_path(@question),notice: '回答を投稿しました'
-    else
-      flash[:alert] = '回答の投稿に失敗しました'
-      render template: "questions/show"
+    respond_to do |format|
+      if @answer.update(answer_params)
+        format.html { redirect_to question_path(@question), notice: '回答を投稿しました' }
+        format.js #answers/create.js.erbを呼び出す
+      else
+        format.html { render template: "questions/show", alert: '回答の投稿に失敗しました' }
+        format.js { render :errors }
+      end
     end
+
   end
 
   private

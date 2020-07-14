@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new
     if @question.update(question_params)
-      redirect_to root_path,notice: "質問が投稿されました"
+      redirect_to question_path(@question),notice: "質問が投稿されました"
     else
       flash[:alert] = "質問の投稿に失敗しました"
       render :new

@@ -1,0 +1,38 @@
+$("#answer-wrap").append(`<dl class="border-rounded">
+            <dt id="answer-<%= @answer.id %>"><%= raw Rinku.auto_link(simple_format(h(@answer.content))) %></dt>
+
+            <hr>
+
+            <!--質問者と回答者が同じなら左へ表示-->
+            <% if @answer.user == @question.user %>
+              <profile class="d-flex align-items-center">
+                <thumbnail>
+                  <% if @answer.user.image? %>
+                    <%= link_to(image_tag(@answer.user.image.url, size: '100x150', class: 'rounded d-block mr-4'), user_path(@answer.user)) %>
+                  <% else %>
+                    <i class="fa fa-frown-o fa-5x mr-4"></i>
+                  <% end %>
+                </thumbnail>
+                <content>
+                  <p>投稿者名: <%= link_to @answer.user.name, user_path(@answer.user) %></p>
+                  <p>投稿日時: <%= simple_time(@answer.created_at) %></p>
+                </content>
+              </profile>
+            <% else %>
+              <profile class="d-flex align-items-center flex-row-reverse">
+                <thumbnail>
+                  <% if @answer.user.image? %>
+                    <%= link_to(image_tag(@answer.user.image.url, size: '100x150', class: 'rounded d-block ml-4'), user_path(@answer.user)) %>
+                  <% else %>
+                    <i class="fa fa-frown-o fa-5x ml-4"></i>
+                  <% end %>
+                </thumbnail>
+                <content>
+                  <p>投稿者名: <%= link_to @answer.user.name, user_path(@answer.user) %></p>
+                  <p>投稿日時: <%= simple_time(@answer.created_at) %></p>
+                </content>
+              </profile>
+            <% end %>
+          </dl>
+          <hr>
+        `);

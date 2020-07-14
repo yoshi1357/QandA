@@ -12,22 +12,29 @@
       <div class="p-4">
         <article>
           <dl>
-            <dt><%= @question.title %></dt>
+            <dt><h2><%= @question.title %></h2></dt>
+
+            <hr>
+
             <dd class="content my-4"><%= raw Rinku.auto_link(simple_format(h(@question.content))) %></dd>
-            <% if user_signed_in? && current_user.id == @question.user_id  %>
-              <dd>[ <%= link_to '編集', edit_user_question_path(current_user, @question) %> ] [ <%= link_to '消去', user_question_path(current_user ,@question), method: :delete, data: {confirm: 'Are you sure?'} %> ]</dd>
-            <% end %>
+
             <!--いいね機能部分-->
             <dd id="like-question-<%= @question.id %>">
               <%= render partial: "layouts/like", locals: { question: @question } %>
             </dd>
+            <% if user_signed_in? && current_user.id == @question.user_id  %>
+              <dd><%= link_to '編集', edit_user_question_path(current_user, @question), class: "btn btn-primary my-1 w-25"  %></dd>
+              <dd><%= link_to '消去', user_question_path(current_user ,@question), method: :delete, data: {confirm: 'Are you sure?'}, class:"btn btn-danger my-1 w-25" %></dd>
+            <% end %>
+
+            <hr>
 
             <profile class="d-flex align-items-center">
               <thumbnail>
                 <% if @question.user.image? %>
                   <%= link_to(image_tag(@question.user.image.url, size: '100x150', class: 'rounded d-block mr-4'), user_path(@question.user)) %>
                 <% else %>
-                  <%= link_to(image_tag('/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4'), user_path(@question.user)) %>
+                  <i class="fa fa-frown-o fa-5x mr-4"></i>
                 <% end %>
               </thumbnail>
               <content>
@@ -43,27 +50,46 @@
 
         <hr>
 
-        <section>
-          <h3 class="text-center">この質問への回答</h3>
+        <section id="answer-wrap">
+          <a href="#answer-form" class="btn btn-primary my-2">回答フォームへ</a>
           <hr>
           <% if @question.answers.any? %>
             <% @question.answers.each do |answer| %>
-              <dl>
-                <dt id="answer-<%= answer.id %>"><h4><%= raw Rinku.auto_link(simple_format(h(answer.content))) %></h4></dt>
+              <dl class="border-rounded">
+                <dt id="answer-<%= answer.id %>"><%= raw Rinku.auto_link(simple_format(h(answer.content))) %></dt>
 
-                <profile class="d-flex align-items-center flex-row-reverse">
-                  <thumbnail>
-                    <% if answer.user.image? %>
-                      <%= link_to(image_tag(answer.user.image.url, size: '100x150', class: 'rounded d-block ml-4'), user_path(answer.user)) %>
-                    <% else %>
-                      <%= link_to(image_tag('/default_kodai.jpg', size: '100x150', class: 'rounded d-block ml-4'), user_path(answer.user)) %>
-                    <% end %>
-                  </thumbnail>
-                  <content>
-                    <p>投稿者名: <%= link_to answer.user.name, user_path(answer.user) %></p>
-                    <p>投稿日時: <%= simple_time(answer.created_at) %></p>
-                  </content>
-                </profile>
+                <hr>
+
+                <!--質問者と回答者が同じなら左へ表示-->
+                <% if answer.user == @question.user %>
+                  <profile class="d-flex align-items-center">
+                    <thumbnail>
+                      <% if answer.user.image? %>
+                        <%= link_to(image_tag(answer.user.image.url, size: '100x150', class: 'rounded d-block mr-4'), user_path(answer.user)) %>
+                      <% else %>
+                        <i class="fa fa-frown-o fa-5x mr-4"></i>
+                      <% end %>
+                    </thumbnail>
+                    <content>
+                      <p>投稿者名: <%= link_to answer.user.name, user_path(answer.user) %></p>
+                      <p>投稿日時: <%= simple_time(answer.created_at) %></p>
+                    </content>
+                  </profile>
+                <% else %>
+                  <profile class="d-flex align-items-center flex-row-reverse">
+                    <thumbnail>
+                      <% if answer.user.image? %>
+                        <%= link_to(image_tag(answer.user.image.url, size: '100x150', class: 'rounded d-block ml-4'), user_path(answer.user)) %>
+                      <% else %>
+                        <i class="fa fa-frown-o fa-5x ml-4"></i>
+                      <% end %>
+                    </thumbnail>
+                    <content>
+                      <p>投稿者名: <%= link_to answer.user.name, user_path(answer.user) %></p>
+                      <p>投稿日時: <%= simple_time(answer.created_at) %></p>
+                    </content>
+                  </profile>
+                <% end %>
               </dl>
               <hr>
             <% end %>
@@ -74,22 +100,14 @@
 
         <hr>
 
-        <!--ボタンでフォームを開閉-->
-        <section>
-          <button class="btn btn-danger d-block mx-auto my-4">この質問に回答する！</button>
-          <section class="disable">
-            <h3 class="text-center">この質問に回答する</h3>
+        <%= render partial: 'layouts/answer_form', locals: {question: @question,answer: @answer} %>
 
-            <%= render partial: 'layouts/answer_form', locals: {question: @question,answer: @answer} %>
-
-          </section>
         </section>
 
 
 
 
       </div>
-      <%= @views_questions %>
     </main>
 
 

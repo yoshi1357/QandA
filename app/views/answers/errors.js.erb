@@ -1,0 +1,7 @@
+$(".js-message-errors").replaceWith(
+  "<%= j(
+    render partial: 'layouts/error_messages',
+           locals: { model: @answer }
+    )
+  %>"
+);
