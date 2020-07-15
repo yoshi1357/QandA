@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :questions do
-    resources :answers, only: [:create]
+    resources :answers, only: [:create, :destroy]
   end
 
   post '/questions/:id/like_questions' => "like_questions#create"

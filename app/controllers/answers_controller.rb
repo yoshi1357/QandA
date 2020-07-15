@@ -17,6 +17,16 @@ class AnswersController < ApplicationController
 
   end
 
+  def destroy
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:id])
+
+    if @answer.destroy
+      redirect_to question_path(@question), notice: '回答を削除しました'
+    end
+
+  end
+
   private
 
     def answer_params
