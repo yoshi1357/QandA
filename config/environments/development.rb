@@ -61,6 +61,8 @@ Rails.application.configure do
 
   # BetterErrorsを使うための記述
   BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
+  # host: request.host
+  config.action_mailer.default_url_options = { host: 'e8184a59c1b74f6ea2049f609d2d6db0.vfs.cloud9.ap-northeast-1.amazonaws.com' }
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp

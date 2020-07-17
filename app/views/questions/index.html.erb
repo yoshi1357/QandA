@@ -11,14 +11,14 @@
       <div class="p-4">
         <h2 class="text-center py-4">投稿された質問</h2>
 
-        <block class="d-flex justify-content-start text-center">
-
-          <%= sort_link @q, :created_at, "投稿日時" %>
+        <block class="d-flex justify-content-between text-center" id="sort-btn-wrap">
+          <!--{}, :class => ""でsort_linkにクラスを付けれる-->
+          <%= sort_link @q, :created_at, "投稿日時",{}, :class => "active btn btn-primary" %>
           <%= link_to '回答が多い', root_path(target: 'answers'), class: "btn btn-primary" %>
           <%= link_to '回答がまだ無い', root_path(target: 'no-answers'), class: "btn btn-primary" %>
           <%= link_to 'いいねが多い順', root_path(target: 'favorites'), class: "btn btn-primary" %>
           <%= link_to 'いいねがまだ無い', root_path(target: 'no-favorites'), class: "btn btn-primary" %>
-          <%= sort_link @q, :impressions_count, "PV数" %>
+          <%= sort_link @q, :impressions_count, "PV数", {}, :class => "btn btn-primary" %>
         </block>
 
         <!--params[:q]がnilの時点でfalseが返るため、エラーにならない-->
@@ -35,8 +35,8 @@
                 <dd>投稿日時: <%= simple_time(question.created_at) %></dd>
                 <% if user_signed_in? && current_user.id == question.user_id  %>
                   <div class="d-flex">
-                    <dd class="mx-1"><%= link_to '編集', edit_user_question_path(current_user, question), class: "btn btn-primary my-1" %></dd>
-                    <dd class="mx-1"><%= link_to '消去', user_question_path(current_user, question), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger my-1" %></dd>
+                    <dd class="mx-1"><%= link_to '編集', edit_user_question_path(current_user, question), class: "btn btn-primary my-1 w-100" %></dd>
+                    <dd class="mx-1"><%= link_to '消去', user_question_path(current_user, question), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger my-1 w-100" %></dd>
                   </div>
                 <% end %>
                 <hr>

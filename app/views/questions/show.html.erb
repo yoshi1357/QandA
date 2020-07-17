@@ -51,7 +51,7 @@
         <hr>
 
         <section id="answer-wrap">
-          <a href="#answer-form" class="btn btn-primary my-2">回答フォームへ</a>
+          <p class="text-center"><a href="#answer-form" class="btn btn-primary my-2">回答フォームへ</a></p>
           <hr>
           <% if @question.answers.any? %>
             <% @question.answers.each do |answer| %>
@@ -78,6 +78,7 @@
                       <% end %>
                     </content>
                   </profile>
+                <!--質問者と回答者が違うなら右へ-->
                 <% else %>
                   <profile class="d-flex align-items-center flex-row-reverse">
                     <thumbnail>
@@ -90,6 +91,9 @@
                     <content>
                       <p>投稿者名: <%= link_to answer.user.name, user_path(answer.user) %></p>
                       <p>投稿日時: <%= simple_time(answer.created_at) %></p>
+                      <% if answer.user == current_user %>
+                        <%= link_to '消去', question_answer_path(@question, answer), method: :delete, data: {confirm: '回答を消去しますか？'}, class:"btn btn-danger my-1 w-50" %>
+                      <% end %>
                     </content>
                   </profile>
                 <% end %>

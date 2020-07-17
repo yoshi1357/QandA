@@ -17,8 +17,16 @@ body{
 }
 
 //ボタンを大きく調整
-.btn{
-    font-size: 1.2em;
+.btn {
+  font-size: 1.2em;
+  width: 25%;
+}
+
+.form-control {
+  font-size: 1.5rem!important;
+}
+
+input[type="submit"].btn{
     margin: 50px auto;
     width: 100%;
 }
@@ -72,7 +80,6 @@ h2 {
 // 共通ここまで
 html{
 
-  $aside-color: white;
   $main-color: white;
   $size-md: 767px;
 
@@ -104,65 +111,31 @@ html{
 
       }
     }
-  }
 
-  // footer
-  body footer ul li a:hover{
-    opacity: 0.5;
-  }
-
-  //aside
-  body aside{
-
-    #bar1,#bar2{
-      background-color: $aside-color;
-      padding: 10px;
-
-      h4{
-        text-align: center;
-      }
-
-      span{
-        font-size: 1.3rem;
-        background-color: lightpink;
-        border-radius: 5px;
-        padding: 3px 5px;
-        margin-right: 3px;
-        vertical-align: middle;
-      }
-
-      a {
-        color: black;
-      }
-
-      dd{
-        margin: 10px 0;
-        text-align: center;
-      }
-
-    }
-
-  }
-
-  body main{
-
-
-    > div{
+    main {
       background-color: $main-color;
-      border-radius: 10px;
     }
-
   }
-
 }
+// footer
+#footer ul li > a:hover{
+  opacity: 0.5;
+}
+
+
 
 // index
 #index {
   // 並べ替えのボタン用
-  block > a {
+  #sort-btn-wrap > a {
     font-size: 0.7em;
     margin: 10px 5px;
     width: 15%;
+
+    &.active {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
   }
 
   #search-result{
@@ -174,6 +147,7 @@ html{
   }
 
   main{
+
 
     .qcontent{
       display: none;
@@ -199,9 +173,6 @@ html{
     font-size: 1.2em;
   }
 
-  // .disable{
-  //   display: none;
-  // }
 
 }
 
