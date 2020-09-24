@@ -15,62 +15,71 @@
       <h2>プロフィール編集</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "users/shared/error_messages", resource: resource %>
+        <%= render "layouts/error_messages", model: resource %>
 
-        <div class="field">
-          <%= f.label :image, class: "image_label" do %>
+        <div class="form_group">
           <div class="prev-contents">
+          <%= f.label :image, class: "image_label" do %>
             <% if current_user.image.present? %>
               <div class="prev-content">
-                <%= image_tag current_user.image.url, size: '100x150', class: "prev-image rounded d-block" %>
+                <%= image_tag current_user.image.url, size: '100x150', class: "prev-image rounded d-block mx-auto" %>
             <% else %>
                 <i class="fa fa-frown-o fa-5x photo-icon"></i>
               </div>
             <% end %>
-          </div>
           <% end %>
-          <%= f.file_field :image, class: "image_form__contents__field hidden_file" %>
+          </div>
+          <%= f.file_field :image, class: "image_form__contents__field hidden_file form-control" %>
+          <%= f.hidden_field :image_cache %>
         </div>
 
-        <div class="field">
+        <div class="form_group">
           <label for="user_name">名前</label> <br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
         </div>
 
-        <div class="field">
+        <div class="form_group">
           <%= f.label :email %><br />
-          <%= f.text_field :email, autocomplete: "email" %>
+          <%= f.text_field :email, autocomplete: "email", class: "form-control" %>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
-        <div class="field">
+        <div class="form_group">
           <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-          <%= f.text_field :password, autocomplete: "new-password" %>
+          <%= f.text_field :password, type: "password", autocomplete: "new-password", class: "form-control pw-form" %>
           <% if @minimum_password_length %>
             <br />
             <em><%= @minimum_password_length %> characters minimum</em>
           <% end %>
         </div>
 
-        <div class="field">
+        <div class="form_group">
           <%= f.label :password_confirmation %><br />
-          <%= f.text_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.text_field :password_confirmation, type: "password", autocomplete: "new-password", class: "form-control pw-form" %>
         </div>
 
-        <div class="field">
+
+
+        <div class="form_group">
           <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-          <%= f.text_field :current_password, autocomplete: "current-password" %>
+          <%= f.text_field :current_password, type: "password", autocomplete: "current-password", class: "form-control pw-form" %>
+
+          <p id="user-password-caution"><em>※半角英小文字,大文字,数字をそれぞれ1種類以上を含んで設定してください</em></p>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="pw-check">
+            <label class="custom-control-label" for="pw-check">パスワードを表示する</label>
+          </div>
         </div>
 
         <div class="actions">
-          <%= f.submit "プロフィール更新", class:"btn btn-primary" %>
+          <%= f.submit "プロフィール更新", class:"btn btn-primary mb-0" %>
         </div>
       <% end %>
 
-      <p><%= button_to "アカウントの消去", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+      <p><%= button_to "アカウントの消去", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger my-0" %></p>
 
       <%= link_to "Back", :back %>
       </div>

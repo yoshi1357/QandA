@@ -14,8 +14,6 @@ class QuestionsController < ApplicationController
     @q = Question.ransack(params[:q])
     @questions = @q.result(distinct: true).sort_question(params[:target]).page(params[:page]).per(PER)
 
-    @question = Question.find(params[:qid]) if params[:qid]
-
     respond_to do |format|
       format.html
       format.js

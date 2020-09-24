@@ -11,15 +11,16 @@
     <main class="col-md-8 mx-auto">
       <div class="p-4">
 
-        <profile class="d-flex align-items-start">
-          <thumbnail class="text-left">
+        <profile>
+          <thumbnail class="text-center">
             <% if @user.image? %>
-              <%= image_tag @user.image.url, size: '100x150', class: 'rounded d-block mr-4' %>
+              <%= image_tag @user.image.url, size: '100x150', class: 'rounded d-block mx-auto' %>
             <% else %>
-              <%= image_tag '/default_kodai.jpg', size: '100x150', class: 'rounded d-block mr-4' %>
+              <i class="fa fa-frown-o fa-5x d-block"></i>
             <% end %>
             <% if params[:id].to_i == current_user.id %>
-              [<%= link_to '編集', edit_user_registration_path %>][<%= link_to '削除', user_registration_path, method: :delete, data: {confirm: 'Are you sure?'} %>]
+              <%= link_to '編集', edit_user_registration_path, class: "btn btn-primary my-1 w-25" %>
+              <%= link_to '削除', user_registration_path, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger my-1 w-25" %>
             <% end %>
           </thumbnail>
           <content class="mx-auto">

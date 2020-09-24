@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
         format.js #answers/create.js.erbを呼び出す
       else
         format.html { render template: "questions/show", alert: '回答の投稿に失敗しました' }
-        format.js { render :errors }
+        format.js { render :errors } #answers/errors.js.erbを呼び出す
       end
     end
 

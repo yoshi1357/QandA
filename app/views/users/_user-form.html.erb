@@ -1,36 +1,36 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "layouts/error_messages", model: resource %>
 
-  <div class="field">
+  <div class="form_group">
     <label for="user_image">アイコン画像<span class="badge badge-success">任意</span></label><br>
     <%= f.file_field :image %>
     <%= f.hidden_field :image_cache %>
   </div>
 
-  <div class="field">
+  <div class="form_group">
     <label for="user_name">名前<span class="badge badge-danger">必須</span></label> <br />
     <%= f.text_field :name, autofocus: true, placeholder: "例：aiueo123", autocomplete: "name", required: true %>
 
   </div>
 
-  <div class="field">
+  <div class="form_group">
     <label for="user_email">メールアドレス<span class="badge badge-danger">必須</span></label> <br />
     <%= f.text_field :email, type: "email", placeholder: "例：abcde@email.com", autocomplete: "email", required: true %>
 
   </div>
 
-  <div class="field">
+  <div class="form_group">
     <label for="user_password">パスワード<em>(8文字以上)</em><span class="badge badge-danger">必須</span></label> <br />
     <%= f.text_field :password, type: "password", placeholder: "例：AbCd1234", autocomplete: "new-password", class: "pw-form", required: true %>
 
     <p id="user-password-caution"><em>※半角英小文字,大文字,数字をそれぞれ1種類以上を含んで設定してください</em></p>
-     <div class="custom-control custom-checkbox">
+    <div class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="pw-check">
       <label class="custom-control-label" for="pw-check">パスワードを表示する</label>
     </div>
   </div>
 
-  <div class="field">
+  <div class="form_group">
     <label for="user_name">確認用パスワード<span class="badge badge-danger">必須</span></label> <br />
     <%= f.text_field :password_confirmation, type: "password", placeholder: "例：AbCd1234", autocomplete: "new-password", class: "pw-form", required: true %>
   </div>
