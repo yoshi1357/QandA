@@ -43,7 +43,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # # PUT /resource
   def update
     super
-    binding.pry
   end
 
   def remove_password

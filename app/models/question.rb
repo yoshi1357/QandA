@@ -42,4 +42,5 @@ class Question < ApplicationRecord
 
 
 
+
 end

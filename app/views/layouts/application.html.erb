@@ -15,9 +15,14 @@
     <!--ヘッダー-->
     <header id="header" class="pt-3 bg-white">
       <div class="text-left py-3 container">
-        <%= link_to root_path, target: "_blank" do %>
+        <%= link_to root_path, target: "_blank", class: "float-left mr-4" do %>
           <%= image_tag 'myQ&Alogo.jpg', size:'150x150' %>
         <% end %>
+        <div class="pt-3">
+          <p>ログインしたい場合は、</p>
+          <p>メールアドレス:test@email.com</p>
+          <p>パスワード:Testpass1</p>
+        </div>
       </div>
 
       <!--ナビバー-->
