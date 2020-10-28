@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   # PV数計測を:showへ 同じipアドレスからは重複して数えないように
   impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
-  PER = 10
+  PER = 20
 
   def index
     #Question.allの代わりにQuestion.page(params[:page]).per()が入る

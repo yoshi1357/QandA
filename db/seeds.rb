@@ -8,30 +8,30 @@
 Faker::Config.locale = :ja
 
 # Userのデータを生成
-100.times do |n|
-  name = Faker::Name.name
-  email = Faker::Internet.email
-  password = "Password123"
+# 100.times do |n|
+#   name = Faker::Name.name
+#   email = Faker::Internet.email
+#   password = "Password123"
 
-  User.create!(name: name,
-              email: email,
-              password: password,
-              password_confirmation: password,
-              )
-end
+#   User.create!(name: name,
+#               email: email,
+#               password: password,
+#               password_confirmation: password,
+#               )
+# end
 
 
 # Questionのデータを生成
-100.times do |n|
-  title = Faker::Lorem.sentence(word_count: 10)
-  content = Faker::Lorem.sentence(word_count: 30)
-  user_id = Faker::Number.between(from: 1,to: User.count)
+# 100.times do |n|
+#   title = Faker::Lorem.sentence(word_count: 10)
+#   content = Faker::Lorem.sentence(word_count: 30)
+#   user_id = Faker::Number.between(from: 1,to: User.count)
 
-  Question.create!(title: title,
-                  content: content,
-                  user_id: user_id
-  )
-end
+#   Question.create!(title: title,
+#                   content: content,
+#                   user_id: user_id
+#   )
+# end
 
 # Answerのデータを生成
 100.times do |n|

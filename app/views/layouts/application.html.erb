@@ -14,7 +14,7 @@
   <body>
     <!--ヘッダー-->
     <header id="header" class="pt-3 bg-white">
-      <div class="text-left py-3 container">
+      <div class="text-left py-3 mb-4 container">
         <%= link_to root_path, target: "_blank", class: "float-left mr-4" do %>
           <%= image_tag 'myQ&Alogo.jpg', size:'150x150' %>
         <% end %>
@@ -26,7 +26,7 @@
       </div>
 
       <!--ナビバー-->
-      <nav id="nav" class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center mt-4">
+      <nav id="nav" class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
 
         <!--タイトルとコンテントでor検索-->
         <%= search_form_for @q do |f| %>
@@ -58,10 +58,6 @@
       </nav>
     </header>
     <!--ヘッダー終わり-->
-
-
-
-
 
     <!--ここに各ページのviewが入る-->
     <div class="bg-light py-3">
