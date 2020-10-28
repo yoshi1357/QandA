@@ -11,7 +11,7 @@ Faker::Config.locale = :ja
 100.times do |n|
   name = Faker::Name.name
   email = Faker::Internet.email
-  password = "password"
+  password = "Password123"
 
   User.create!(name: name,
               email: email,
